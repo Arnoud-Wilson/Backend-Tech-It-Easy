@@ -1,5 +1,6 @@
 package com.Novi.TechItEasy.controllers;
 
+import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,14 +26,14 @@ public class TelevisionController {
         return ResponseEntity.ok(televisionDatabase.get(id));
     }
 
-    @PostMapping(value ="/television/add/{name}")
-    private ResponseEntity<List<String>> ChangeTelevision(@PathVariable String name) {
+    @PostMapping(value ="/television/add")
+    private ResponseEntity<List<String>> ChangeTelevision(@RequestBody String name) {
         televisionDatabase.add(name);
         return ResponseEntity.ok(televisionDatabase);
     }
 
-    @PutMapping(value ="/television/change/{id}/{name}")
-    public ResponseEntity<List<String>> addTelevision(@PathVariable int id, @PathVariable String name) {
+    @PutMapping(value ="/television/change/{id}")
+    public ResponseEntity<List<String>> addTelevision(@PathVariable int id, @RequestBody String name) {
         televisionDatabase.set(id, name);
         return ResponseEntity.ok(televisionDatabase);
     }
@@ -42,6 +43,4 @@ public class TelevisionController {
         televisionDatabase.remove(id);
         return ResponseEntity.ok(televisionDatabase);
     }
-
-
 }
