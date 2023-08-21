@@ -1,5 +1,6 @@
 package com.Novi.TechItEasy.controllers;
 
+import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,11 @@ public class TelevisionController {
 
     @GetMapping(value ="/television/{id}")
     public ResponseEntity<String> getTelevision(@PathVariable int id) {
-        return ResponseEntity.ok(televisionDatabase.get(id));
+        if (id >= televisionDatabase.size()) {
+            throw new IndexOutOfBoundsException();
+        } else{
+            return ResponseEntity.ok(televisionDatabase.get(id));
+        }
     }
 
     @PostMapping(value ="/television/add")
