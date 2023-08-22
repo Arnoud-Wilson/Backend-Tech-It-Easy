@@ -1,5 +1,6 @@
 package com.Novi.TechItEasy.controllers;
 
+import com.Novi.TechItEasy.exceptions.NameTooLongException;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,12 @@ public class TelevisionController {
 
     @PostMapping(value ="/television/add")
     private ResponseEntity<List<String>> ChangeTelevision(@RequestBody String name) {
-        televisionDatabase.add(name);
-        return ResponseEntity.ok(televisionDatabase);
+        if (name.length() >= 20) {
+            throw new NameTooLongException();
+        } else{
+            televisionDatabase.add(name);
+            return ResponseEntity.ok(televisionDatabase);
+        }
     }
 
     @PutMapping(value ="/television/change/{id}")
