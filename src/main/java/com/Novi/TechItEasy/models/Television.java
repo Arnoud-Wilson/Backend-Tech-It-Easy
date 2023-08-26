@@ -71,7 +71,7 @@ public class Television {
 
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Long id) {
@@ -79,7 +79,7 @@ public class Television {
     }
 
     public String getBrand() {
-        return brand;
+        return this.brand;
     }
 
     public void setBrand(String brand) {
@@ -87,7 +87,7 @@ public class Television {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -95,7 +95,7 @@ public class Television {
     }
 
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public void setType(String type) {
@@ -103,7 +103,7 @@ public class Television {
     }
 
     public Double getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(Double price) {
@@ -111,7 +111,7 @@ public class Television {
     }
 
     public Double getAvailableSize() {
-        return availableSize;
+        return this.availableSize;
     }
 
     public void setAvailableSize(Double availableSize) {
@@ -119,7 +119,7 @@ public class Television {
     }
 
     public Double getRefreshRate() {
-        return refreshRate;
+        return this.refreshRate;
     }
 
     public void setRefreshRate(Double refreshRate) {
@@ -127,7 +127,7 @@ public class Television {
     }
 
     public String getScreenType() {
-        return screenType;
+        return this.screenType;
     }
 
     public void setScreenType(String screenType) {
@@ -135,7 +135,7 @@ public class Television {
     }
 
     public String getScreenQuality() {
-        return screenQuality;
+        return this.screenQuality;
     }
 
     public void setScreenQuality(String screenQuality) {
@@ -143,7 +143,7 @@ public class Television {
     }
 
     public Boolean getSmartTv() {
-        return smartTv;
+        return this.smartTv;
     }
 
     public void setSmartTv(Boolean smartTv) {
@@ -151,7 +151,7 @@ public class Television {
     }
 
     public Boolean getWifi() {
-        return wifi;
+        return this.wifi;
     }
 
     public void setWifi(Boolean wifi) {
@@ -159,7 +159,7 @@ public class Television {
     }
 
     public Boolean getVoiceControl() {
-        return voiceControl;
+        return this.voiceControl;
     }
 
     public void setVoiceControl(Boolean voiceControl) {
@@ -167,7 +167,7 @@ public class Television {
     }
 
     public Boolean getHdr() {
-        return hdr;
+        return this.hdr;
     }
 
     public void setHdr(Boolean hdr) {
@@ -175,7 +175,7 @@ public class Television {
     }
 
     public Boolean getBluetooth() {
-        return bluetooth;
+        return this.bluetooth;
     }
 
     public void setBluetooth(Boolean bluetooth) {
@@ -183,7 +183,7 @@ public class Television {
     }
 
     public Boolean getAmbiLight() {
-        return ambiLight;
+        return this.ambiLight;
     }
 
     public void setAmbiLight(Boolean ambiLight) {
@@ -191,7 +191,7 @@ public class Television {
     }
 
     public int getOriginalStock() {
-        return originalStock;
+        return this.originalStock;
     }
 
     public void setOriginalStock(int originalStock) {
@@ -199,7 +199,7 @@ public class Television {
     }
 
     public int getSold() {
-        return sold;
+        return this.sold;
     }
 
     public void setSold(int sold) {
