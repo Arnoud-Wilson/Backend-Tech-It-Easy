@@ -1,8 +1,7 @@
 package com.Novi.TechItEasy.controllers;
 
 import com.Novi.TechItEasy.exceptions.NameTooLongException;
-import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
-import jakarta.websocket.server.PathParam;
+import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +12,15 @@ import java.util.List;
 @RestController
 public class TelevisionController {
 
+    private final TelevisionRepository televisionRepository;
+
+    public TelevisionController(TelevisionRepository televisionRepository) {
+        this.televisionRepository = televisionRepository;
+    }
+
+
     String[] televisionBrands = {"Sony", "Phillips", "LG"};
     List<String> televisionDatabase = new ArrayList<>(List.of(televisionBrands));
-
 
 
     @GetMapping(value ="/televisions")

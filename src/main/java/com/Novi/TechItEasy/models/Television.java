@@ -10,6 +10,7 @@ public class Television {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false)
     private Long id;
 
     @Column(name = "brand")
@@ -49,8 +50,7 @@ public class Television {
     public Television() {
     }
 
-    public Television(Long id, String brand, String name, String type, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, int originalStock, int sold) {
-        this.id = id;
+    public Television(String brand, String name, String type, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, int originalStock, int sold) {
         this.brand = brand;
         this.name = name;
         this.type = type;
