@@ -1,5 +1,6 @@
 package com.Novi.TechItEasy.controllers;
 
+import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.exceptions.NameTooLongException;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
@@ -36,16 +37,16 @@ public class TelevisionController {
         }
     }
 
-//    @PostMapping(value ="/television/add")
-//    private ResponseEntity<List<String>> ChangeTelevision(@RequestBody String name) {
-//        if (name.length() >= 20) {
-//            throw new NameTooLongException();
-//        } else{
-//            televisionDatabase.add(name);
-//            return ResponseEntity.ok(televisionDatabase);
-//        }
-//    }
-//
+    @PostMapping(value ="/television/add")
+    private ResponseEntity<Television> ChangeTelevision(@RequestBody Television television) {
+        if (television.getBrand() == null || television.getName() ==null) {
+            throw new MinimalRequiredTelevisionException();
+        } else {
+            televisionRepository.save(television);
+            return ResponseEntity.created(null).body(television);
+        }
+    }
+
 //    @PutMapping(value ="/television/change/{id}")
 //    public ResponseEntity<List<String>> addTelevision(@PathVariable int id, @RequestBody String name) {
 //        televisionDatabase.set(id, name);

@@ -1,6 +1,6 @@
 package com.Novi.TechItEasy.controllers;
 
-import com.Novi.TechItEasy.exceptions.NameTooLongException;
+import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@ public class ExceptionController {
         return new ResponseEntity<>("Dit ID is niet aanwezig in de database", HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(value = NameTooLongException.class)
-    public ResponseEntity<Object> exception(NameTooLongException exception) {
-        return new ResponseEntity<>("De televisie naam mag uit maximaal 20 karakters bestaan", HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(value = MinimalRequiredTelevisionException.class)
+    public ResponseEntity<Object> exception(MinimalRequiredTelevisionException exception) {
+        return new ResponseEntity<>("De televisie moet minimaal een merk en naam hebben", HttpStatus.NOT_ACCEPTABLE);
     }
 }

@@ -13,9 +13,9 @@ public class Television {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "brand")
+    @Column(name = "brand", nullable = false)
     private String brand;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "type")
     private String type;
