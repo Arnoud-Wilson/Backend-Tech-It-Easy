@@ -1,13 +1,12 @@
 package com.Novi.TechItEasy.controllers;
 
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
-import com.Novi.TechItEasy.exceptions.NameTooLongException;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +27,7 @@ public class TelevisionController {
         return ResponseEntity.ok(televisionRepository.findAll());
     }
 
-    @GetMapping(value ="/television/{id}")
+    @GetMapping(value ="/televisions/{id}")
     public ResponseEntity<Optional<Television>> getTelevision(@PathVariable Long id) {
         if (televisionRepository.existsById(id)) {
             return ResponseEntity.ok(televisionRepository.findById(id));
@@ -37,9 +36,9 @@ public class TelevisionController {
         }
     }
 
-    @PostMapping(value ="/television/add")
+    @PostMapping(value ="/televisions")
     private ResponseEntity<Television> ChangeTelevision(@RequestBody Television television) {
-        if (television.getBrand() == null || television.getName() ==null) {
+        if (television.getBrand() == null || television.getName() == null) {
             throw new MinimalRequiredTelevisionException();
         } else {
             televisionRepository.save(television);
@@ -47,15 +46,16 @@ public class TelevisionController {
         }
     }
 
-//    @PutMapping(value ="/television/change/{id}")
-//    public ResponseEntity<List<String>> addTelevision(@PathVariable int id, @RequestBody String name) {
-//        televisionDatabase.set(id, name);
-//        return ResponseEntity.ok(televisionDatabase);
-//    }
-//
-//    @DeleteMapping(value ="/television/delete/{id}")
-//    public ResponseEntity<List<String>> deleteTelevision(@PathVariable int id) {
-//        televisionDatabase.remove(id);
-//        return ResponseEntity.ok(televisionDatabase);
-//    }
+    @PutMapping(value ="/televisions/{id}")
+    public ResponseEntity<Television> addTelevision(@PathVariable Long id, @RequestBody Television television) {
+
+
+        return ResponseEntity.ok(television);
+    }
+
+    @DeleteMapping(value ="/televisions/{id}")
+    public ResponseEntity<String> deleteTelevision(@PathVariable Long id) {
+        televisionRepository.deleteAllById(Collections.singleton(id));
+        return ResponseEntity.ok("Deleted id: " + id  + " from database.");
+    }
 }
