@@ -3,6 +3,8 @@ package com.Novi.TechItEasy.controllers;
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
+import com.Novi.TechItEasy.services.TelevisionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +16,11 @@ import java.util.Optional;
 @RestController
 public class TelevisionController {
 
-    private final TelevisionRepository televisionRepository;
+    @Autowired
+    private TelevisionRepository televisionRepository;
 
-    public TelevisionController(TelevisionRepository televisionRepository) {
-        this.televisionRepository = televisionRepository;
-    }
+    @Autowired
+    private TelevisionService televisionService;
 
 
     @GetMapping(value ="/televisions")
