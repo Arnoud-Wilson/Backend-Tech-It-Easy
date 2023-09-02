@@ -7,7 +7,9 @@ import com.Novi.TechItEasy.services.TelevisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +46,10 @@ public class TelevisionController {
             throw new MinimalRequiredTelevisionException();
         } else {
             televisionRepository.save(television);
-            return ResponseEntity.created(null).body(television);
+
+            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + television.getId()).toUriString());
+
+            return ResponseEntity.created(uri).body(television);
         }
     }
 
