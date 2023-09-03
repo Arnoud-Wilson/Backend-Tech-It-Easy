@@ -1,5 +1,6 @@
 package com.Novi.TechItEasy.controllers;
 
+import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
@@ -26,9 +27,9 @@ public class TelevisionController {
 
 
     @GetMapping(value ="/televisions")
-    public ResponseEntity<List<Television>> getTelevisions() {
+    public ResponseEntity<List<TelevisionDto>> getTelevisions() {
 
-        return ResponseEntity.ok(televisionRepository.findAll());
+        return ResponseEntity.ok(televisionService.getTelevisions());
     }
 
     @GetMapping(value ="/televisions/{id}")
