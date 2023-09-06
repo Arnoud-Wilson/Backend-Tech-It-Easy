@@ -13,9 +13,11 @@ import java.util.List;
 @Service
 public class TelevisionService {
 
-    @Autowired
-    private TelevisionRepository televisionRepository;
+    private final TelevisionRepository televisionRepository;
 
+    public TelevisionService(TelevisionRepository televisionRepository) {
+        this.televisionRepository = televisionRepository;
+    }
 
 
     public List<TelevisionDto> getTelevisions() {

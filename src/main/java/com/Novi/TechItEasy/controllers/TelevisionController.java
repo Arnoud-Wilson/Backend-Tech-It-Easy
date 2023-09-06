@@ -19,11 +19,15 @@ import java.util.Optional;
 @RestController
 public class TelevisionController {
 
-    @Autowired
-    private TelevisionRepository televisionRepository;
 
-    @Autowired
-    private TelevisionService televisionService;
+    private final TelevisionRepository televisionRepository;
+    private final TelevisionService televisionService;
+
+    public TelevisionController(TelevisionRepository televisionRepository, TelevisionService televisionService) {
+        this.televisionRepository = televisionRepository;
+        this.televisionService = televisionService;
+    }
+
 
 
     @GetMapping(value ="/televisions")
