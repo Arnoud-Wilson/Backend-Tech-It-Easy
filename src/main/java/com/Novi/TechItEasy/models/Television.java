@@ -3,6 +3,8 @@ package com.Novi.TechItEasy.models;
 
 import jakarta.persistence.*;
 
+import java.util.Optional;
+
 
 @Entity
 @Table(name = "television")
@@ -68,6 +70,7 @@ public class Television {
         this.originalStock = originalStock;
         this.sold = sold;
     }
+
 
 
     public Long getId() {

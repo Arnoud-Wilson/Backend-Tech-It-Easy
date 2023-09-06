@@ -17,6 +17,7 @@ import java.util.Optional;
 
 
 @RestController
+@RequestMapping("/televisions")
 public class TelevisionController {
 
 
@@ -30,22 +31,21 @@ public class TelevisionController {
 
 
 
-    @GetMapping(value ="/televisions")
+    @GetMapping
     public ResponseEntity<List<TelevisionDto>> getTelevisions() {
 
         return ResponseEntity.ok(televisionService.getTelevisions());
     }
 
-    @GetMapping(value ="/televisions/{id}")
-    public ResponseEntity<Optional<Television>> getTelevision(@PathVariable Long id) {
-        if (televisionRepository.existsById(id)) {
-            return ResponseEntity.ok(televisionRepository.findById(id));
-        } else{
-            throw new IndexOutOfBoundsException();
-        }
+
+    @GetMapping(value ="/{id}")
+    public ResponseEntity<TelevisionDto> getTelevision(@PathVariable Long id) {
+
+        return ResponseEntity.ok(televisionService.getTelevision(id));
     }
 
-    @PostMapping(value ="/televisions")
+
+    @PostMapping
     private ResponseEntity<Television> addTelevision(@RequestBody Television television) {
         if (television.getBrand() == null || television.getName() == null) {
             throw new MinimalRequiredTelevisionException();
@@ -58,7 +58,7 @@ public class TelevisionController {
         }
     }
 
-    @PutMapping(value ="/televisions/{id}")
+    @PutMapping(value ="/{id}")
     public ResponseEntity<Optional<Television>> changeTelevision(@PathVariable Long id, @RequestBody Television television) {
 
         Optional<Television> databaseTelevision = televisionRepository.findById(id);
@@ -125,7 +125,7 @@ public class TelevisionController {
         }
     }
 
-    @DeleteMapping(value ="/televisions/{id}")
+    @DeleteMapping(value ="/{id}")
     public ResponseEntity<String> deleteTelevision(@PathVariable Long id) {
         if (televisionRepository.existsById(id)) {
             televisionRepository.deleteAllById(Collections.singleton(id));

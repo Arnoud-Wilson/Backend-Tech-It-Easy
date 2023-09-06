@@ -4,6 +4,8 @@ package com.Novi.TechItEasy.dtos;
 import com.Novi.TechItEasy.models.Television;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.Optional;
+
 public class TelevisionDto {
 
     @NotBlank
