@@ -33,7 +33,7 @@ public class TelevisionController {
     }
 
     @PostMapping(value ="/television/add")
-    private ResponseEntity<List<String>> ChangeTelevision(@RequestBody String name) {
+    public ResponseEntity<List<String>> ChangeTelevision(@RequestBody String name) {
         if (name.length() >= 20) {
             throw new NameTooLongException();
         } else{
