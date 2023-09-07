@@ -2,12 +2,15 @@ package com.Novi.TechItEasy.services;
 
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
+import com.Novi.TechItEasy.exceptions.IndexNotFoundException;
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -74,8 +77,74 @@ public class TelevisionService {
 
         //TODO: return and use uri location
         return dto;
+    }
 
 
+    ///// For changing television in database /////
+    public TelevisionDto changeTelevision(Long id, TelevisionInputDto television) {
+
+        Optional<Television> databaseTelevision = televisionRepository.findById(id);
+
+        if (databaseTelevision.isPresent()) {
+            Television fetchedTelevision = databaseTelevision.get();
+
+            if (television.getBrand() != null) {
+                fetchedTelevision.setBrand(television.getBrand());
+            }
+            if (television.getName() != null) {
+                fetchedTelevision.setName(television.getName());
+            }
+            if (television.getType() != null) {
+                fetchedTelevision.setType(television.getType());
+            }
+            if (television.getPrice() != null) {
+                fetchedTelevision.setPrice(television.getPrice());
+            }
+            if (television.getAvailableSize() != null) {
+                fetchedTelevision.setAvailableSize(television.getAvailableSize());
+            }
+            if (television.getRefreshRate() != null) {
+                fetchedTelevision.setRefreshRate(television.getRefreshRate());
+            }
+            if (television.getScreenType() != null) {
+                fetchedTelevision.setScreenType(television.getScreenType());
+            }
+            if (television.getScreenQuality() != null) {
+                fetchedTelevision.setScreenQuality(television.getScreenQuality());
+            }
+            if (television.getSmartTv() != null) {
+                fetchedTelevision.setSmartTv(television.getSmartTv());
+            }
+            if (television.getWifi() != null) {
+                fetchedTelevision.setWifi(television.getWifi());
+            }
+            if (television.getVoiceControl() != null) {
+                fetchedTelevision.setVoiceControl(television.getVoiceControl());
+            }
+            if (television.getHdr() != null) {
+                fetchedTelevision.setHdr(television.getHdr());
+            }
+            if (television.getBluetooth() != null) {
+                fetchedTelevision.setBluetooth(television.getBluetooth());
+            }
+            if (television.getAmbiLight() != null) {
+                fetchedTelevision.setAmbiLight(television.getAmbiLight());
+            }
+            //TODO: what if cliënt wants to make it zero? modify.
+            if (television.getOriginalStock() != 0) {
+                fetchedTelevision.setOriginalStock(television.getOriginalStock());
+            }
+            if (television.getSold() != 0) {
+                fetchedTelevision.setSold(television.getSold());
+            }
+
+            televisionRepository.save(fetchedTelevision);
+
+            return TelevisionDto.fromTelevision(televisionRepository.findById(id).get());
+
+        } else {
+            throw new IndexNotFoundException("We hebben geen televisie met dit id.");
+        }
     }
 
 

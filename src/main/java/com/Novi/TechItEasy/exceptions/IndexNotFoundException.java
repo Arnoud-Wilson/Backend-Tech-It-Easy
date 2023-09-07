@@ -5,7 +5,7 @@ public class IndexNotFoundException extends RuntimeException {
 
     public IndexNotFoundException() {
 
-        super("We hebben geen televisie met dit id.");
+        super();
     }
 
     public IndexNotFoundException(String message) {
