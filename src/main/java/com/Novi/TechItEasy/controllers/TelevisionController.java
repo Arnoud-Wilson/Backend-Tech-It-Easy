@@ -2,18 +2,15 @@ package com.Novi.TechItEasy.controllers;
 
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
-import com.Novi.TechItEasy.exceptions.IndexNotFoundException;
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
-import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import com.Novi.TechItEasy.services.TelevisionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+
 
 
 
