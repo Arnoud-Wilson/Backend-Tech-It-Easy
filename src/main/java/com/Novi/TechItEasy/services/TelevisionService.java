@@ -1,15 +1,21 @@
 package com.Novi.TechItEasy.services;
 
 import com.Novi.TechItEasy.dtos.TelevisionDto;
-import com.Novi.TechItEasy.exceptions.IndexNotFoundException;
+import com.Novi.TechItEasy.dtos.TelevisionInputDto;
+import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 
@@ -54,6 +60,24 @@ public class TelevisionService {
         }
     }
 
+
+    /// For creating one new television in database /////
+    private Object addTelevision(@RequestBody TelevisionInputDto television) {
+
+        Television inputTelevision = television.toTelevision();
+
+        televisionRepository.save(inputTelevision);
+
+        TelevisionDto dto = TelevisionDto.fromTelevision(inputTelevision);
+
+
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + inputTelevision.getId()).toUriString());
+
+        //TODO: return and use uri location
+        return dto;
+
+
+    }
 
 
 }

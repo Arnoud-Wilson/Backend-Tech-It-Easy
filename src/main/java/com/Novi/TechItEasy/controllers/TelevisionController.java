@@ -46,7 +46,7 @@ public class TelevisionController {
 
 
     @PostMapping
-    private ResponseEntity<Television> addTelevision(@RequestBody Television television) {
+    public ResponseEntity<Television> addTelevision(@RequestBody Television television) {
         if (television.getBrand() == null || television.getName() == null) {
             throw new MinimalRequiredTelevisionException();
         } else {
