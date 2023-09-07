@@ -1,14 +1,14 @@
 package com.Novi.TechItEasy.controllers;
 
 import com.Novi.TechItEasy.dtos.TelevisionDto;
+import com.Novi.TechItEasy.dtos.TelevisionInputDto;
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import com.Novi.TechItEasy.services.TelevisionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 
 import java.net.URI;
 import java.util.Collections;
@@ -46,15 +46,11 @@ public class TelevisionController {
 
 
     @PostMapping
-    public ResponseEntity<Television> addTelevision(@RequestBody Television television) {
+    public ResponseEntity<TelevisionDto> addTelevision(@RequestBody TelevisionInputDto television) {
         if (television.getBrand() == null || television.getName() == null) {
             throw new MinimalRequiredTelevisionException();
         } else {
-            televisionRepository.save(television);
-
-            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + television.getId()).toUriString());
-
-            return ResponseEntity.created(uri).body(television);
+            return ResponseEntity.created(null).body(televisionService.addTelevision(television));
         }
     }
 

@@ -15,7 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 
@@ -62,7 +61,7 @@ public class TelevisionService {
 
 
     /// For creating one new television in database /////
-    private Object addTelevision(@RequestBody TelevisionInputDto television) {
+    public TelevisionDto addTelevision(@RequestBody TelevisionInputDto television) {
 
         Television inputTelevision = television.toTelevision();
 
