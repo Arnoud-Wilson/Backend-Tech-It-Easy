@@ -9,6 +9,7 @@ import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -142,6 +144,18 @@ public class TelevisionService {
 
             return TelevisionDto.fromTelevision(televisionRepository.findById(id).get());
 
+        } else {
+            throw new IndexNotFoundException("We hebben geen televisie met dit id.");
+        }
+    }
+
+
+    ///// For deleting television from database /////
+    public String deleteTelevision(Long id) {
+        if (televisionRepository.existsById(id)) {
+            televisionRepository.deleteAllById(Collections.singleton(id));
+
+            return "We hebben televisie met id: " + id + " uit de database verwijderd.";
         } else {
             throw new IndexNotFoundException("We hebben geen televisie met dit id.");
         }

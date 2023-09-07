@@ -64,11 +64,7 @@ public class TelevisionController {
 
     @DeleteMapping(value ="/{id}")
     public ResponseEntity<String> deleteTelevision(@PathVariable Long id) {
-        if (televisionRepository.existsById(id)) {
-            televisionRepository.deleteAllById(Collections.singleton(id));
-            return ResponseEntity.ok("Deleted id: " + id  + " from database.");
-        } else {
-            throw new IndexNotFoundException("We hebben geen televisie met dit id.");
-        }
+;
+            return ResponseEntity.ok(televisionService.deleteTelevision(id));
     }
 }
