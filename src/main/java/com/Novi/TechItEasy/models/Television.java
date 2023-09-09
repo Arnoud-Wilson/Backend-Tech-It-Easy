@@ -2,6 +2,9 @@ package com.Novi.TechItEasy.models;
 
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 
 @Entity
