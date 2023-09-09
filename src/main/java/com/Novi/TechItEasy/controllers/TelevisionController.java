@@ -1,8 +1,6 @@
 package com.Novi.TechItEasy.controllers;
 
 import com.Novi.TechItEasy.exceptions.NameTooLongException;
-import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +21,7 @@ public class TelevisionController {
         return ResponseEntity.ok(televisionDatabase);
     }
 
-    @GetMapping(value ="/television/{id}")
+    @GetMapping(value ="/televisions/{id}")
     public ResponseEntity<String> getTelevision(@PathVariable int id) {
         if (id >= televisionDatabase.size()) {
             throw new IndexOutOfBoundsException();
@@ -32,7 +30,7 @@ public class TelevisionController {
         }
     }
 
-    @PostMapping(value ="/television/add")
+    @PostMapping(value ="/televisions")
     public ResponseEntity<List<String>> ChangeTelevision(@RequestBody String name) {
         if (name.length() >= 20) {
             throw new NameTooLongException();
@@ -42,13 +40,13 @@ public class TelevisionController {
         }
     }
 
-    @PutMapping(value ="/television/change/{id}")
+    @PutMapping(value ="/televisions/{id}")
     public ResponseEntity<List<String>> addTelevision(@PathVariable int id, @RequestBody String name) {
         televisionDatabase.set(id, name);
         return ResponseEntity.ok(televisionDatabase);
     }
 
-    @DeleteMapping(value ="/television/delete/{id}")
+    @DeleteMapping(value ="/televisions/{id}")
     public ResponseEntity<List<String>> deleteTelevision(@PathVariable int id) {
         televisionDatabase.remove(id);
         return ResponseEntity.ok(televisionDatabase);
