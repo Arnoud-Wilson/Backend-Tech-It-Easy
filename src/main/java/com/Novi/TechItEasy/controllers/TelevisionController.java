@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -13,7 +14,6 @@ public class TelevisionController {
 
     String[] televisionBrands = {"Sony", "Phillips", "LG"};
     List<String> televisionDatabase = new ArrayList<>(List.of(televisionBrands));
-
 
 
     @GetMapping(value ="/televisions")
