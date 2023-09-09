@@ -100,9 +100,9 @@ public class TelevisionController {
             if (television.getOriginalStock() != 0) {
                 fetchedTelevision.setOriginalStock(television.getOriginalStock());
             }
-//            if (television.getSold() != 0) {
-//                fetchedTelevision.setSold(television.getSold());
-//            }
+            if (television.getSold() != 0) {
+                fetchedTelevision.setSold(television.getSold());
+            }
 
             televisionRepository.save(fetchedTelevision);
 
