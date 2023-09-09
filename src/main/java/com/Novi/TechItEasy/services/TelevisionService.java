@@ -2,7 +2,7 @@ package com.Novi.TechItEasy.services;
 
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
-import com.Novi.TechItEasy.exceptions.IndexNotFoundException;
+import com.Novi.TechItEasy.exceptions.IndexOutOfBoundsException;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
@@ -55,7 +55,7 @@ public class TelevisionService {
             TelevisionDto dto = TelevisionDto.fromTelevision(fetchedTelevision.get());
             return dto;
         } else {
-            throw new RecordNotFoundException("We hebben geen televisie met dit id gevonden.");
+            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
         }
     }
 
@@ -140,7 +140,7 @@ public class TelevisionService {
             return TelevisionDto.fromTelevision(televisionRepository.findById(id).get());
 
         } else {
-            throw new IndexNotFoundException("We hebben geen televisie met dit id.");
+            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
         }
     }
 
@@ -152,7 +152,7 @@ public class TelevisionService {
 
             return "We hebben televisie met id: " + id + " uit de database verwijderd.";
         } else {
-            throw new IndexNotFoundException("We hebben geen televisie met dit id.");
+            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
         }
     }
 }
