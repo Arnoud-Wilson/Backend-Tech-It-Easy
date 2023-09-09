@@ -23,11 +23,8 @@ public class TelevisionController {
 
     @GetMapping(value ="/televisions/{id}")
     public ResponseEntity<String> getTelevision(@PathVariable int id) {
-        if (id >= televisionDatabase.size()) {
-            throw new IndexOutOfBoundsException();
-        } else{
+
             return ResponseEntity.ok(televisionDatabase.get(id));
-        }
     }
 
     @PostMapping(value ="/televisions")
