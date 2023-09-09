@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionController {
 
     @ExceptionHandler(value = RecordNotFoundException.class)
-    public ResponseEntity<Object> exception(RecordNotFoundException exception) {
+    public ResponseEntity<String> exception(RecordNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = IndexOutOfBoundsException.class)
-    public ResponseEntity<Object> exception(IndexOutOfBoundsException exception) {
+    public ResponseEntity<String> exception(IndexOutOfBoundsException exception) {
         return new ResponseEntity<>("Dit ID is niet aanwezig in de database", HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = MinimalRequiredTelevisionException.class)
-    public ResponseEntity<Object> exception(MinimalRequiredTelevisionException exception) {
+    public ResponseEntity<String> exception(MinimalRequiredTelevisionException exception) {
         return new ResponseEntity<>("De televisie moet minimaal een merk en naam hebben", HttpStatus.NOT_ACCEPTABLE);
     }
 }
