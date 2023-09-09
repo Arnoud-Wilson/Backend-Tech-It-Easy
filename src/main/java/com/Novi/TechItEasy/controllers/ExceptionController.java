@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionController {
 
     @ExceptionHandler(value = RecordNotFoundException.class)
-    public ResponseEntity<Object> exception(RecordNotFoundException exception) {
+    public ResponseEntity<String> exception(RecordNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = IndexOutOfBoundsException.class)
-    public ResponseEntity<Object> exception(IndexOutOfBoundsException exception) {
+    public ResponseEntity<String> exception(IndexOutOfBoundsException exception) {
         return new ResponseEntity<>("Dit ID is niet aanwezig in de database", HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = NameTooLongException.class)
-    public ResponseEntity<Object> exception(NameTooLongException exception) {
+    public ResponseEntity<String> exception(NameTooLongException exception) {
         return new ResponseEntity<>("De televisie naam mag uit maximaal 20 karakters bestaan", HttpStatus.BAD_REQUEST);
     }
 }
