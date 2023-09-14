@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+import java.util.Optional;
+
 
 @Entity
 @Table(name = "television")
@@ -71,6 +73,7 @@ public class Television {
         this.originalStock = originalStock;
         this.sold = sold;
     }
+
 
 
     public Long getId() {
