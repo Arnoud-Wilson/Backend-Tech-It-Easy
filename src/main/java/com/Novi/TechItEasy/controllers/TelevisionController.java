@@ -20,7 +20,6 @@ public class TelevisionController {
         this.televisionRepository = televisionRepository;
     }
 
-
     @GetMapping(value ="/televisions")
     public ResponseEntity<List<Television>> getTelevisions() {
 
@@ -121,5 +120,4 @@ public class TelevisionController {
         } else {
             throw new IndexOutOfBoundsException();
         }
-    }
 }
