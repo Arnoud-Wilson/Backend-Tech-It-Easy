@@ -28,6 +28,8 @@ public class TelevisionController {
     }
 
 
+    @GetMapping(value ="/televisions")
+    public ResponseEntity<List<Television>> getTelevisions() {
 
     @GetMapping
     public ResponseEntity<List<TelevisionDto>> getTelevisions() {
@@ -42,9 +44,10 @@ public class TelevisionController {
         return ResponseEntity.ok(televisionService.getTelevision(id));
     }
 
-
+      
     @PostMapping
     public ResponseEntity<TelevisionDto> addTelevision(@RequestBody TelevisionInputDto television) {
+
         if (television.getBrand() == null || television.getName() == null) {
             throw new MinimalRequiredTelevisionException();
         } else {
@@ -61,7 +64,7 @@ public class TelevisionController {
 
     @DeleteMapping(value ="/{id}")
     public ResponseEntity<String> deleteTelevision(@PathVariable Long id) {
-;
+
             return ResponseEntity.ok(televisionService.deleteTelevision(id));
     }
 }
