@@ -28,9 +28,6 @@ public class TelevisionController {
     }
 
 
-    @GetMapping(value ="/televisions")
-    public ResponseEntity<List<Television>> getTelevisions() {
-
     @GetMapping
     public ResponseEntity<List<TelevisionDto>> getTelevisions() {
 
