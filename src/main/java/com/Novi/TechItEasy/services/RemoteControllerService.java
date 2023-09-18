@@ -1,14 +1,15 @@
 package com.Novi.TechItEasy.services;
 
+import com.Novi.TechItEasy.dtos.RemoteControllerDto;
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
+import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
-import com.Novi.TechItEasy.repositories.TelevisionRepository;
+import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -16,32 +17,32 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-
 @Service
-public class TelevisionService {
+public class RemoteControllerService {
 
-    private final TelevisionRepository televisionRepository;
+//TODO: ombouwen naar remote contoller
+    private final RemoteControllerRepository remoteControllerRepository;
 
-    public TelevisionService(TelevisionRepository televisionRepository) {
-        this.televisionRepository = televisionRepository;
+    public RemoteControllerService(RemoteControllerRepository remoteControllerRepository) {
+        this.remoteControllerRepository = remoteControllerRepository;
     }
 
 
-    /// For fetching all televisions currently in the database /////
-    public List<TelevisionDto> getTelevisions() {
+    /// For fetching all remote controllers currently in the database /////
+    public List<RemoteControllerDto> getRemoteControllers() {
 
-        List<Television> televisions = new ArrayList<>(televisionRepository.findAll());
-        List<TelevisionDto> televisionDtos = new ArrayList<>();
+        List<RemoteController> remoteControllers = new ArrayList<>(remoteControllerRepository.findAll());
+        List<RemoteControllerDto> remoteControllerDtos = new ArrayList<>();
 
-        for (Television television : televisions) {
-            TelevisionDto dto = TelevisionDto.fromTelevision(television);
-            televisionDtos.add(dto);
+        for (RemoteController remoteController : remoteControllers) {
+            RemoteControllerDto dto = RemoteControllerDto.fromTelevision(television);
+            remoteControllerDtos.add(dto);
         }
 
-        if (televisionDtos.isEmpty()) {
-            throw new RecordNotFoundException("We hebben geen televisies om te laten zien");
+        if (remoteControllerDtos.isEmpty()) {
+            throw new RecordNotFoundException("We hebben geen afstandsbedieningen om te laten zien");
         } else {
-            return televisionDtos;
+            return remoteControllerDtos;
         }
     }
 

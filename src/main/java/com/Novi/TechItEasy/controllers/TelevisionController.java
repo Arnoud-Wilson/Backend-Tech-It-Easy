@@ -18,12 +18,9 @@ import java.util.List;
 @RequestMapping("/televisions")
 public class TelevisionController {
 
-
-    private final TelevisionRepository televisionRepository;
     private final TelevisionService televisionService;
 
-    public TelevisionController(TelevisionRepository televisionRepository, TelevisionService televisionService) {
-        this.televisionRepository = televisionRepository;
+    public TelevisionController(TelevisionService televisionService) {
         this.televisionService = televisionService;
     }
 
