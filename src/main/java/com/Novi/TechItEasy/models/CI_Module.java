@@ -22,16 +22,6 @@ public class CI_Module {
     private Double price;
 
 
-    public CI_Module() {
-    }
-
-    public CI_Module(Long id, String name, String type, Double price) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.price = price;
-    }
-
 
     public Long getId() {
         return id;
