@@ -9,6 +9,7 @@ public class CI_Module {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
     @Column(name = "name")
@@ -18,7 +19,7 @@ public class CI_Module {
     private String type;
 
     @Column(name = "price")
-    private Double price
+    private Double price;
 
 
     public CI_Module() {

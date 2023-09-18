@@ -1,41 +1,39 @@
 package com.Novi.TechItEasy.models;
 
-
 import jakarta.persistence.*;
 
+
 @Entity
-@Table(name= "WallBrackets")
+@Table(name = "wallBrackets")
 public class WallBracket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
-    @Column(name = "compatibleWith")
-    private String compatibleWith;
-    @Column(name = "batteryType")
-    private String batteryType;
+
+    @Column(name = "size")
+    private String size;
+
+    @Column(name = "adjustable")
+    private Boolean adjustable;
+
     @Column(name = "name")
     private String name;
-    @Column(name = "brand")
-    private String brand;
+
     @Column(name = "price")
     private Double price;
-    @Column(name = "originalStock")
-    private int originalStock;
 
 
     public WallBracket() {
     }
 
-    public WallBracket(Long id, String compatibleWith, String batteryType, String name, String brand, Double price, int originalStock) {
+    public WallBracket(Long id, String size, Boolean adjustable, String name, Double price) {
         this.id = id;
-        this.compatibleWith = compatibleWith;
-        this.batteryType = batteryType;
+        this.size = size;
+        this.adjustable = adjustable;
         this.name = name;
-        this.brand = brand;
         this.price = price;
-        this.originalStock = originalStock;
     }
 
 
@@ -43,20 +41,20 @@ public class WallBracket {
         return id;
     }
 
-    public String getCompatibleWith() {
-        return compatibleWith;
+    public String getSize() {
+        return size;
     }
 
-    public void setCompatibleWith(String compatibleWith) {
-        this.compatibleWith = compatibleWith;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public String getBatteryType() {
-        return batteryType;
+    public Boolean getAdjustable() {
+        return adjustable;
     }
 
-    public void setBatteryType(String batteryType) {
-        this.batteryType = batteryType;
+    public void setAdjustable(Boolean adjustable) {
+        this.adjustable = adjustable;
     }
 
     public String getName() {
@@ -67,27 +65,11 @@ public class WallBracket {
         this.name = name;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
     public Double getPrice() {
         return price;
     }
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public int getOriginalStock() {
-        return originalStock;
-    }
-
-    public void setOriginalStock(int originalStock) {
-        this.originalStock = originalStock;
     }
 }
