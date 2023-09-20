@@ -58,14 +58,14 @@ public class RemoteControllerController {
             return ResponseEntity.created(uri).body(dto);
         }
     }
-//
-//
-//    @PutMapping(value ="/{id}")
-//    public ResponseEntity<RemoteControllerDto> changeRemoteController(@PathVariable Long id, @RequestBody RemoteControllerInputDto remoteController) {
-//
-//        return ResponseEntity.ok(remoteControllerService.changeRemoteController(id, remoteController));
-//    }
-//
+
+
+    @PutMapping(value ="/{id}")
+    public ResponseEntity<RemoteControllerDto> changeRemoteController(@PathVariable Long id, @RequestBody RemoteControllerDto remoteController) {
+
+        return ResponseEntity.ok(remoteControllerService.changeRemoteController(id, remoteController));
+    }
+
 //    @DeleteMapping(value ="/{id}")
 //    public ResponseEntity<String> deleteRemoteController(@PathVariable Long id) {
 //

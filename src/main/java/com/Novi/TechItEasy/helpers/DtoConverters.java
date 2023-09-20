@@ -3,7 +3,6 @@ package com.Novi.TechItEasy.helpers;
 import com.Novi.TechItEasy.dtos.RemoteControllerDto;
 import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;
 import com.Novi.TechItEasy.models.RemoteController;
-import com.Novi.TechItEasy.models.Television;
 
 public class DtoConverters {
 

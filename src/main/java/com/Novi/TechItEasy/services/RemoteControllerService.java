@@ -59,7 +59,7 @@ public class RemoteControllerService {
             return dto;
 
         } else {
-            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+            throw new RecordNotFoundException("We hebben geen afstandsbediening met dit ID.");
         }
     }
 
@@ -78,74 +78,45 @@ public class RemoteControllerService {
 
         return dto;
     }
-//
-//    ///// For changing television in database /////
-//    public TelevisionDto changeTelevision(Long id, TelevisionInputDto television) {
-//
-//        Optional<Television> databaseTelevision = televisionRepository.findById(id);
-//
-//        if (databaseTelevision.isPresent()) {
-//            Television fetchedTelevision = databaseTelevision.get();
-//
-//            if (television.getBrand() != null) {
-//                fetchedTelevision.setBrand(television.getBrand());
-//            }
-//            if (television.getName() != null) {
-//                fetchedTelevision.setName(television.getName());
-//            }
-//            if (television.getType() != null) {
-//                fetchedTelevision.setType(television.getType());
-//            }
-//            if (television.getPrice() != null) {
-//                fetchedTelevision.setPrice(television.getPrice());
-//            }
-//            if (television.getAvailableSize() != null) {
-//                fetchedTelevision.setAvailableSize(television.getAvailableSize());
-//            }
-//            if (television.getRefreshRate() != null) {
-//                fetchedTelevision.setRefreshRate(television.getRefreshRate());
-//            }
-//            if (television.getScreenType() != null) {
-//                fetchedTelevision.setScreenType(television.getScreenType());
-//            }
-//            if (television.getScreenQuality() != null) {
-//                fetchedTelevision.setScreenQuality(television.getScreenQuality());
-//            }
-//            if (television.getSmartTv() != null) {
-//                fetchedTelevision.setSmartTv(television.getSmartTv());
-//            }
-//            if (television.getWifi() != null) {
-//                fetchedTelevision.setWifi(television.getWifi());
-//            }
-//            if (television.getVoiceControl() != null) {
-//                fetchedTelevision.setVoiceControl(television.getVoiceControl());
-//            }
-//            if (television.getHdr() != null) {
-//                fetchedTelevision.setHdr(television.getHdr());
-//            }
-//            if (television.getBluetooth() != null) {
-//                fetchedTelevision.setBluetooth(television.getBluetooth());
-//            }
-//            if (television.getAmbiLight() != null) {
-//                fetchedTelevision.setAmbiLight(television.getAmbiLight());
-//            }
-//            //TODO: what if cliënt wants to make it zero? modify.
-//            if (television.getOriginalStock() != 0) {
-//                fetchedTelevision.setOriginalStock(television.getOriginalStock());
-//            }
-//            if (television.getSold() != 0) {
-//                fetchedTelevision.setSold(television.getSold());
-//            }
-//
-//            televisionRepository.save(fetchedTelevision);
-//
-//            return TelevisionDto.fromTelevision(televisionRepository.findById(id).get());
-//
-//        } else {
-//            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
-//        }
-//    }
-//
+
+    ///// For changing remote controller in database /////
+    public RemoteControllerDto changeRemoteController(Long id, RemoteControllerDto remoteControllerDto) {
+
+        Optional<RemoteController> databaseRemoteContoller = remoteControllerRepository.findById(id);
+
+        if (databaseRemoteContoller.isPresent()) {
+            RemoteController fetchedRemoteContoller = databaseRemoteContoller.get();
+
+            if (remoteControllerDto.compatibleWith != null) {
+                fetchedRemoteContoller.setCompatibleWith(remoteControllerDto.compatibleWith);
+            }
+            if (remoteControllerDto.batteryType != null) {
+                fetchedRemoteContoller.setBatteryType(remoteControllerDto.batteryType);
+            }
+            if (remoteControllerDto.name != null) {
+                fetchedRemoteContoller.setName(remoteControllerDto.name);
+            }
+            if (remoteControllerDto.brand != null) {
+                fetchedRemoteContoller.setBrand(remoteControllerDto.brand);
+            }
+            if (remoteControllerDto.price != null) {
+                fetchedRemoteContoller.setPrice(remoteControllerDto.price);
+            }
+            //TODO: what if cliënt wants to make it zero? modify.
+            if (remoteControllerDto.originalStock != 0) {
+                fetchedRemoteContoller.setOriginalStock(remoteControllerDto.originalStock);
+            }
+
+            remoteControllerRepository.save(fetchedRemoteContoller);
+            DtoConverters.remoteControllerDtoConverter(remoteControllerRepository.findById(id).get(), remoteControllerDto);
+
+            return remoteControllerDto;
+
+        } else {
+            throw new RecordNotFoundException("We hebben geen afstandsbediening met dit ID.");
+        }
+    }
+
 //
 //    ///// For deleting television from database /////
 //    public String deleteTelevision(Long id) {
