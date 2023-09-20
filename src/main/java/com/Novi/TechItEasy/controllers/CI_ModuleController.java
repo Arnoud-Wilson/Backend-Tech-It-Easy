@@ -26,13 +26,13 @@ public class CI_ModuleController {
         return ResponseEntity.ok(ci_moduleService.getCiModules());
     }
 
-//
-//    @GetMapping(value ="/{id}")
-//    public ResponseEntity<WallBracketDto> getWallBracket(@PathVariable Long id) {
-//
-//        return ResponseEntity.ok(wallBracketService.getWallBracket(id));
-//    }
-//
+
+    @GetMapping(value ="/{id}")
+    public ResponseEntity<CI_ModuleDto> getCiModule(@PathVariable Long id) {
+
+        return ResponseEntity.ok(ci_moduleService.getCiModule(id));
+    }
+
 //
 //    @PostMapping
 //    public ResponseEntity<Object> createWallBracket(@Valid @RequestBody WallBracketInputDto wallBracket, BindingResult bindingResult) {

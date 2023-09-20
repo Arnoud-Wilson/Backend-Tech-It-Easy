@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CI_ModuleService {
@@ -41,21 +42,21 @@ public class CI_ModuleService {
         }
     }
 
-//
-//    /// For fetching one wall bracket by id /////
-//    public WallBracketDto getWallBracket(Long id) {
-//        Optional<WallBracket> fetchedWallBracket = wallBracketRepository.findById(id);
-//
-//        if (fetchedWallBracket.isPresent()) {
-//            WallBracketDto dto = new WallBracketDto();
-//            DtoConverters.wallBracketDtoConverter(fetchedWallBracket.get(), dto);
-//            return dto;
-//
-//        } else {
-//            throw new RecordNotFoundException("We hebben geen muurbeugel met dit ID.");
-//        }
-//    }
-//
+
+    /// For fetching one ci module by id /////
+    public CI_ModuleDto getCiModule(Long id) {
+        Optional<CI_Module> fetchedCiModule = ci_moduleRepository.findById(id);
+
+        if (fetchedCiModule.isPresent()) {
+            CI_ModuleDto dto = new CI_ModuleDto();
+            DtoConverters.CI_ModuleDtoConverter(fetchedCiModule.get(), dto);
+            return dto;
+
+        } else {
+            throw new RecordNotFoundException("We hebben geen ci module met dit ID.");
+        }
+    }
+
 //
 //    /// For creating one new wall bracket in database /////
 //    public WallBracketDto createWallBracket(WallBracketInputDto wallBracket) {
