@@ -8,6 +8,7 @@ import com.Novi.TechItEasy.helpers.DtoConverters;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
+import org.springframework.data.util.Optionals;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RemoteControllerService {
@@ -46,20 +48,22 @@ public class RemoteControllerService {
         }
     }
 
-//
-//    /// For fetching one television by id /////
-//    public TelevisionDto getTelevision(Long id) {
-//        Optional<Television> fetchedTelevision = televisionRepository.findById(id);
-//
-//        if (fetchedTelevision.isPresent()) {
-//            TelevisionDto dto = TelevisionDto.fromTelevision(fetchedTelevision.get());
-//            return dto;
-//        } else {
-//            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
-//        }
-//    }
-//
-//
+
+    /// For fetching one remote controller by id /////
+    public RemoteControllerDto getRemoteController(Long id) {
+        Optional<RemoteController> fetchedRemoteController = remoteControllerRepository.findById(id);
+
+        if (fetchedRemoteController.isPresent()) {
+            RemoteControllerDto dto = new RemoteControllerDto();
+            DtoConverters.remoteControllerDtoConverter(fetchedRemoteController.get(), dto);
+            return dto;
+
+        } else {
+            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+        }
+    }
+
+
     /// For creating one new remote controller in database /////
     public RemoteControllerDto createRemoteController(RemoteControllerInputDto remoteController) {
 

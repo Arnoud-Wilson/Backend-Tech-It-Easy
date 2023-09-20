@@ -30,14 +30,14 @@ public class RemoteControllerController {
         return ResponseEntity.ok(remoteControllerService.getRemoteControllers());
     }
 
-//
-//    @GetMapping(value ="/{id}")
-//    public ResponseEntity<RemoteControllerDto> getRemoteController(@PathVariable Long id) {
-//
-//        return ResponseEntity.ok(remoteControllerService.getRemoteController(id));
-//    }
-//
-//
+
+    @GetMapping(value ="/{id}")
+    public ResponseEntity<RemoteControllerDto> getRemoteController(@PathVariable Long id) {
+
+        return ResponseEntity.ok(remoteControllerService.getRemoteController(id));
+    }
+
+
     @PostMapping
     public ResponseEntity<Object> createRemoteController(@Valid @RequestBody RemoteControllerInputDto remoteController, BindingResult bindingResult) {
 
