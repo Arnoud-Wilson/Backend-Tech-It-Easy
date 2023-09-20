@@ -11,6 +11,7 @@ import com.Novi.TechItEasy.repositories.CI_ModuleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -103,15 +104,15 @@ public class CI_ModuleService {
         }
     }
 
-//
-//    ///// For deleting wall bracket from database /////
-//    public String deleteWallBracket(Long id) {
-//        if (wallBracketRepository.existsById(id)) {
-//            wallBracketRepository.deleteAllById(Collections.singleton(id));
-//
-//            return "We hebben muurbeugel met id: " + id + " uit de database verwijderd.";
-//        } else {
-//            throw new RecordNotFoundException("We hebben geen muurbeugel met dit ID.");
-//        }
-//    }
+
+    ///// For deleting ci module from database /////
+    public String deleteCiModule(Long id) {
+        if (ci_moduleRepository.existsById(id)) {
+            ci_moduleRepository.deleteAllById(Collections.singleton(id));
+
+            return "We hebben ci module met id: " + id + " uit de database verwijderd.";
+        } else {
+            throw new RecordNotFoundException("We hebben geen ci module met dit ID.");
+        }
+    }
 }

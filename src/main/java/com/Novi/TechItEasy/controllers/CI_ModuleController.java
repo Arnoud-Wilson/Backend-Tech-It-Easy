@@ -68,10 +68,10 @@ public class CI_ModuleController {
         return ResponseEntity.ok(ci_moduleService.changeCiModule(id, ci_module));
     }
 
-//
-//    @DeleteMapping(value ="/{id}")
-//    public ResponseEntity<String> deleteWallBracket(@PathVariable Long id) {
-//
-//        return ResponseEntity.ok(wallBracketService.deleteWallBracket(id));
-//    }
+
+    @DeleteMapping(value ="/{id}")
+    public ResponseEntity<String> deleteCiModule(@PathVariable Long id) {
+
+        return ResponseEntity.ok(ci_moduleService.deleteCiModule(id));
+    }
 }
