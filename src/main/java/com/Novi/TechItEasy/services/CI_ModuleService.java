@@ -1,6 +1,7 @@
 package com.Novi.TechItEasy.services;
 
 import com.Novi.TechItEasy.dtos.CI_ModuleDto;
+import com.Novi.TechItEasy.dtos.CI_ModuleInputDto;
 import com.Novi.TechItEasy.dtos.WallBracketDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
@@ -57,22 +58,22 @@ public class CI_ModuleService {
         }
     }
 
-//
-//    /// For creating one new wall bracket in database /////
-//    public WallBracketDto createWallBracket(WallBracketInputDto wallBracket) {
-//
-//        WallBracket newWallBracket = new WallBracket();
-//        DtoConverters.wallBracketInputDtoConverter(newWallBracket, wallBracket);
-//
-//        wallBracketRepository.save(newWallBracket);
-//
-//        WallBracketDto dto = new WallBracketDto();
-//        DtoConverters.wallBracketDtoConverter(newWallBracket, dto);
-//
-//
-//        return dto;
-//    }
-//
+
+    /// For creating one new ci module in database /////
+    public CI_ModuleDto createCiModule(CI_ModuleInputDto ci_module) {
+
+        CI_Module newCiModule = new CI_Module();
+        DtoConverters.CI_ModuleInputDtoConverter(newCiModule, ci_module);
+
+        ci_moduleRepository.save(newCiModule);
+
+        CI_ModuleDto dto = new CI_ModuleDto();
+        DtoConverters.CI_ModuleDtoConverter(newCiModule, dto);
+
+
+        return dto;
+    }
+
 //
 //    ///// For changing wall bracket in database /////
 //    public WallBracketDto changeWallBracket(Long id, WallBracketDto wallBracketDto) {
