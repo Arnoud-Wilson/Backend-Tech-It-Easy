@@ -33,12 +33,12 @@ public class WallBracketController {
     }
 
 
-//    @GetMapping(value ="/{id}")
-//    public ResponseEntity<RemoteControllerDto> getRemoteController(@PathVariable Long id) {
-//
-//        return ResponseEntity.ok(remoteControllerService.getRemoteController(id));
-//    }
-//
+    @GetMapping(value ="/{id}")
+    public ResponseEntity<WallBracketDto> getWallBracket(@PathVariable Long id) {
+
+        return ResponseEntity.ok(wallBracketService.getWallBracket(id));
+    }
+
 //
 //    @PostMapping
 //    public ResponseEntity<Object> createRemoteController(@Valid @RequestBody RemoteControllerInputDto remoteController, BindingResult bindingResult) {

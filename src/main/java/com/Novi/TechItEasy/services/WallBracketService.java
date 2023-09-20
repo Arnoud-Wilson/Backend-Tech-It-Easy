@@ -48,21 +48,21 @@ public class WallBracketService {
         }
     }
 
-//
-//    /// For fetching one remote controller by id /////
-//    public RemoteControllerDto getRemoteController(Long id) {
-//        Optional<RemoteController> fetchedRemoteController = remoteControllerRepository.findById(id);
-//
-//        if (fetchedRemoteController.isPresent()) {
-//            RemoteControllerDto dto = new RemoteControllerDto();
-//            DtoConverters.remoteControllerDtoConverter(fetchedRemoteController.get(), dto);
-//            return dto;
-//
-//        } else {
-//            throw new RecordNotFoundException("We hebben geen afstandsbediening met dit ID.");
-//        }
-//    }
-//
+
+    /// For fetching one wall bracket by id /////
+    public WallBracketDto getWallBracket(Long id) {
+        Optional<WallBracket> fetchedWallBracket = wallBracketRepository.findById(id);
+
+        if (fetchedWallBracket.isPresent()) {
+            WallBracketDto dto = new WallBracketDto();
+            DtoConverters.wallBracketDtoConverter(fetchedWallBracket.get(), dto);
+            return dto;
+
+        } else {
+            throw new RecordNotFoundException("We hebben geen muurbeugel met dit ID.");
+        }
+    }
+
 //
 //    /// For creating one new remote controller in database /////
 //    public RemoteControllerDto createRemoteController(RemoteControllerInputDto remoteController) {
