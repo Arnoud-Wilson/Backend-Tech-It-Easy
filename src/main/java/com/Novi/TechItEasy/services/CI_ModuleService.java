@@ -74,38 +74,35 @@ public class CI_ModuleService {
         return dto;
     }
 
-//
-//    ///// For changing wall bracket in database /////
-//    public WallBracketDto changeWallBracket(Long id, WallBracketDto wallBracketDto) {
-//
-//        Optional<WallBracket> databaseWallBracket = wallBracketRepository.findById(id);
-//
-//        if (databaseWallBracket.isPresent()) {
-//            WallBracket fetchedWallBracket = databaseWallBracket.get();
-//
-//            if (wallBracketDto.size != null) {
-//                fetchedWallBracket.setSize(wallBracketDto.size);
-//            }
-//            if (wallBracketDto.adjustable != null) {
-//                fetchedWallBracket.setAdjustable(wallBracketDto.adjustable);
-//            }
-//            if (wallBracketDto.name != null) {
-//                fetchedWallBracket.setName(wallBracketDto.name);
-//            }
-//            if (wallBracketDto.price != null) {
-//                fetchedWallBracket.setPrice(wallBracketDto.price);
-//            }
-//
-//            wallBracketRepository.save(fetchedWallBracket);
-//            DtoConverters.wallBracketDtoConverter(wallBracketRepository.findById(id).get(), wallBracketDto);
-//
-//            return wallBracketDto;
-//
-//        } else {
-//            throw new RecordNotFoundException("We hebben geen muurbeugels met dit ID.");
-//        }
-//    }
-//
+
+    ///// For changing ci module in database /////
+    public CI_ModuleDto changeCiModule(Long id, CI_ModuleDto ci_moduleDto) {
+
+        Optional<CI_Module> databaseCiModule = ci_moduleRepository.findById(id);
+
+        if (databaseCiModule.isPresent()) {
+            CI_Module fetchedCiModule = databaseCiModule.get();
+
+            if (ci_moduleDto.name != null) {
+                fetchedCiModule.setName(ci_moduleDto.name);
+            }
+            if (ci_moduleDto.type != null) {
+                fetchedCiModule.setType(ci_moduleDto.type);
+            }
+            if (ci_moduleDto.price != null) {
+                fetchedCiModule.setPrice(ci_moduleDto.price);
+            }
+
+            ci_moduleRepository.save(fetchedCiModule);
+            DtoConverters.CI_ModuleDtoConverter(ci_moduleRepository.findById(id).get(), ci_moduleDto);
+
+            return ci_moduleDto;
+
+        } else {
+            throw new RecordNotFoundException("We hebben geen ci module met dit ID.");
+        }
+    }
+
 //
 //    ///// For deleting wall bracket from database /////
 //    public String deleteWallBracket(Long id) {

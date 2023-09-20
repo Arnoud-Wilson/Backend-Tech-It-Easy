@@ -61,13 +61,13 @@ public class CI_ModuleController {
         }
     }
 
-//
-//    @PutMapping(value ="/{id}")
-//    public ResponseEntity<WallBracketDto> changeWallBracket(@PathVariable Long id, @RequestBody WallBracketDto wallBracket) {
-//
-//        return ResponseEntity.ok(wallBracketService.changeWallBracket(id, wallBracket));
-//    }
-//
+
+    @PutMapping(value ="/{id}")
+    public ResponseEntity<CI_ModuleDto> changeCiModule(@PathVariable Long id, @RequestBody CI_ModuleDto ci_module) {
+
+        return ResponseEntity.ok(ci_moduleService.changeCiModule(id, ci_module));
+    }
+
 //
 //    @DeleteMapping(value ="/{id}")
 //    public ResponseEntity<String> deleteWallBracket(@PathVariable Long id) {
