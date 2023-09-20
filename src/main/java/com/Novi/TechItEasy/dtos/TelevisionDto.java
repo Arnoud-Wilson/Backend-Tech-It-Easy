@@ -8,11 +8,9 @@ import java.util.Optional;
 
 public class TelevisionDto {
 
-    @NotBlank
+
     private Long id;
-    @NotBlank
     private String brand;
-    @NotBlank
     private String name;
     private String type;
     private Double price;

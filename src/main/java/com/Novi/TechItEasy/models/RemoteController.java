@@ -10,13 +10,13 @@ import jakarta.persistence.*;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id", nullable = false, updatable = false)
         private Long id;
-        @Column(name = "compatibleWith")
+        @Column(name = "compatibleWith",nullable = false)
         private String compatibleWith;
         @Column(name = "batteryType")
         private String batteryType;
-        @Column(name = "name")
+        @Column(name = "name", nullable = false)
         private String name;
-        @Column(name = "brand")
+        @Column(name = "brand", nullable = false)
         private String brand;
         @Column(name = "price")
         private Double price;

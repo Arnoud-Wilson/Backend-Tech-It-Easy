@@ -1,11 +1,15 @@
 package com.Novi.TechItEasy.dtos;
 
 import com.Novi.TechItEasy.models.Television;
+import jakarta.validation.constraints.NotBlank;
 
 public class TelevisionInputDto {
 
+    @NotBlank
     private Long id;
+    @NotBlank
     private String brand;
+    @NotBlank
     private String name;
     private String type;
     private Double price;
