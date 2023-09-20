@@ -1,20 +1,14 @@
 package com.Novi.TechItEasy.services;
 
-import com.Novi.TechItEasy.dtos.RemoteControllerDto;
-import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;
-import com.Novi.TechItEasy.dtos.TelevisionDto;
-import com.Novi.TechItEasy.dtos.WallBracketDto;
+import com.Novi.TechItEasy.dtos.*;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
-import com.Novi.TechItEasy.models.RemoteController;
-import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
 import com.Novi.TechItEasy.repositories.WallBracketRepository;
 import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,22 +57,22 @@ public class WallBracketService {
         }
     }
 
-//
-//    /// For creating one new remote controller in database /////
-//    public RemoteControllerDto createRemoteController(RemoteControllerInputDto remoteController) {
-//
-//        RemoteController newRemoteController = new RemoteController();
-//        DtoConverters.remoteControllerInputDtoConverter(newRemoteController, remoteController);
-//
-//        remoteControllerRepository.save(newRemoteController);
-//
-//        RemoteControllerDto dto = new RemoteControllerDto();
-//        DtoConverters.remoteControllerDtoConverter(newRemoteController, dto);
-//
-//
-//        return dto;
-//    }
-//
+
+    /// For creating one new wall bracket in database /////
+    public WallBracketDto createWallBracket(WallBracketInputDto wallBracket) {
+
+        WallBracket newWallBracket = new WallBracket();
+        DtoConverters.wallBracketInputDtoConverter(newWallBracket, wallBracket);
+
+        wallBracketRepository.save(newWallBracket);
+
+        WallBracketDto dto = new WallBracketDto();
+        DtoConverters.wallBracketDtoConverter(newWallBracket, dto);
+
+
+        return dto;
+    }
+
 //
 //    ///// For changing remote controller in database /////
 //    public RemoteControllerDto changeRemoteController(Long id, RemoteControllerDto remoteControllerDto) {
