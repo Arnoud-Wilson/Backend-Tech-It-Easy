@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +37,7 @@ public class WallBracketService {
         }
 
         if (wallBracketDtos.isEmpty()) {
-            throw new RecordNotFoundException("We hebben geen muursteunen om te laten zien");
+            throw new RecordNotFoundException("We hebben geen muurbeugels om te laten zien");
         } else {
             return wallBracketDtos;
         }
@@ -105,15 +106,15 @@ public class WallBracketService {
         }
     }
 
-//
-//    ///// For deleting remote controller from database /////
-//    public String deleteRemoteController(Long id) {
-//        if (remoteControllerRepository.existsById(id)) {
-//            remoteControllerRepository.deleteAllById(Collections.singleton(id));
-//
-//            return "We hebben afstandsbediening met id: " + id + " uit de database verwijderd.";
-//        } else {
-//            throw new RecordNotFoundException("We hebben geen afstandsbediening met dit ID.");
-//        }
-//    }
+
+    ///// For deleting wall bracket from database /////
+    public String deleteWallBracket(Long id) {
+        if (wallBracketRepository.existsById(id)) {
+            wallBracketRepository.deleteAllById(Collections.singleton(id));
+
+            return "We hebben muurbeugel met id: " + id + " uit de database verwijderd.";
+        } else {
+            throw new RecordNotFoundException("We hebben geen muurbeugel met dit ID.");
+        }
+    }
 }

@@ -67,9 +67,9 @@ public class WallBracketController {
     }
 
 
-//    @DeleteMapping(value ="/{id}")
-//    public ResponseEntity<String> deleteRemoteController(@PathVariable Long id) {
-//
-//        return ResponseEntity.ok(remoteControllerService.deleteRemoteController(id));
-//    }
+    @DeleteMapping(value ="/{id}")
+    public ResponseEntity<String> deleteWallBracket(@PathVariable Long id) {
+
+        return ResponseEntity.ok(wallBracketService.deleteWallBracket(id));
+    }
 }
