@@ -19,6 +19,7 @@ public class RemoteControllerController {
 
     private final RemoteControllerService remoteControllerService;
 
+
     public RemoteControllerController(RemoteControllerService remoteControllerService) {
         this.remoteControllerService = remoteControllerService;
     }
@@ -65,6 +66,7 @@ public class RemoteControllerController {
 
         return ResponseEntity.ok(remoteControllerService.changeRemoteController(id, remoteController));
     }
+
 
     @DeleteMapping(value ="/{id}")
     public ResponseEntity<String> deleteRemoteController(@PathVariable Long id) {

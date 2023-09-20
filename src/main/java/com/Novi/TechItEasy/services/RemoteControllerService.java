@@ -2,18 +2,12 @@ package com.Novi.TechItEasy.services;
 
 import com.Novi.TechItEasy.dtos.RemoteControllerDto;
 import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;
-import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
 import com.Novi.TechItEasy.models.RemoteController;
-import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
-import org.springframework.data.util.Optionals;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +16,6 @@ import java.util.Optional;
 @Service
 public class RemoteControllerService {
 
-//TODO: ombouwen naar remote controller
     private final RemoteControllerRepository remoteControllerRepository;
 
     public RemoteControllerService(RemoteControllerRepository remoteControllerRepository) {
@@ -79,6 +72,7 @@ public class RemoteControllerService {
 
         return dto;
     }
+
 
     ///// For changing remote controller in database /////
     public RemoteControllerDto changeRemoteController(Long id, RemoteControllerDto remoteControllerDto) {
