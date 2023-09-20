@@ -59,14 +59,14 @@ public class WallBracketController {
         }
     }
 
-//
-//    @PutMapping(value ="/{id}")
-//    public ResponseEntity<RemoteControllerDto> changeRemoteController(@PathVariable Long id, @RequestBody RemoteControllerDto remoteController) {
-//
-//        return ResponseEntity.ok(remoteControllerService.changeRemoteController(id, remoteController));
-//    }
-//
-//
+
+    @PutMapping(value ="/{id}")
+    public ResponseEntity<WallBracketDto> changeWallBracket(@PathVariable Long id, @RequestBody WallBracketDto wallBracket) {
+
+        return ResponseEntity.ok(wallBracketService.changeWallBracket(id, wallBracket));
+    }
+
+
 //    @DeleteMapping(value ="/{id}")
 //    public ResponseEntity<String> deleteRemoteController(@PathVariable Long id) {
 //
