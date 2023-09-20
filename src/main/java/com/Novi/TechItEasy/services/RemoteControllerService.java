@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -117,15 +118,15 @@ public class RemoteControllerService {
         }
     }
 
-//
-//    ///// For deleting television from database /////
-//    public String deleteTelevision(Long id) {
-//        if (televisionRepository.existsById(id)) {
-//            televisionRepository.deleteAllById(Collections.singleton(id));
-//
-//            return "We hebben televisie met id: " + id + " uit de database verwijderd.";
-//        } else {
-//            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
-//        }
-//    }
+
+    ///// For deleting remote controller from database /////
+    public String deleteRemoteController(Long id) {
+        if (remoteControllerRepository.existsById(id)) {
+            remoteControllerRepository.deleteAllById(Collections.singleton(id));
+
+            return "We hebben afstandsbediening met id: " + id + " uit de database verwijderd.";
+        } else {
+            throw new RecordNotFoundException("We hebben geen afstandsbediening met dit ID.");
+        }
+    }
 }
