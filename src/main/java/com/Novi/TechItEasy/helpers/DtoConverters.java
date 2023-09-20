@@ -31,7 +31,7 @@ public class DtoConverters {
         remoteController.setOriginalStock(dto.originalStock);
     }
 
-    public static void WallBracketDtoConverter(WallBracket wallBracket, WallBracketDto dto) {
+    public static void wallBracketDtoConverter(WallBracket wallBracket, WallBracketDto dto) {
 
         dto.id = wallBracket.getId();
         dto.size = wallBracket.getSize();
