@@ -1,9 +1,7 @@
 package com.Novi.TechItEasy.helpers;
 
-import com.Novi.TechItEasy.dtos.RemoteControllerDto;
-import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;
-import com.Novi.TechItEasy.dtos.WallBracketDto;
-import com.Novi.TechItEasy.dtos.WallBracketInputDto;
+import com.Novi.TechItEasy.dtos.*;
+import com.Novi.TechItEasy.models.CI_Module;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.WallBracket;
 
@@ -46,5 +44,20 @@ public class DtoConverters {
         wallBracket.setAdjustable(dto.adjustable);
         wallBracket.setName(dto.name);
         wallBracket.setPrice(dto.price);
+    }
+
+    public static void CI_ModuleDtoConverter(CI_Module ci_module, CI_ModuleDto dto) {
+
+        dto.id = ci_module.getId();
+        dto.name = ci_module.getName();
+        dto.type = ci_module.getType();
+        dto.price = ci_module.getPrice();
+    }
+
+    public static void CI_ModuleInputDtoConverter(CI_Module ci_module, CI_ModuleInputDto dto) {
+
+        ci_module.setName(dto.name);
+        ci_module.setType(dto.type);
+        ci_module.setPrice(dto.price);
     }
 }
