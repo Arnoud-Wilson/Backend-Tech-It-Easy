@@ -2,11 +2,9 @@ package com.Novi.TechItEasy.services;
 
 import com.Novi.TechItEasy.dtos.CI_ModuleDto;
 import com.Novi.TechItEasy.dtos.CI_ModuleInputDto;
-import com.Novi.TechItEasy.dtos.WallBracketDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
 import com.Novi.TechItEasy.models.CI_Module;
-import com.Novi.TechItEasy.models.WallBracket;
 import com.Novi.TechItEasy.repositories.CI_ModuleRepository;
 import org.springframework.stereotype.Service;
 

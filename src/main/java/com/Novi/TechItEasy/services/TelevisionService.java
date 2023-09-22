@@ -1,9 +1,13 @@
 package com.Novi.TechItEasy.services;
 
+import com.Novi.TechItEasy.dtos.IdInputDto;
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
+import com.Novi.TechItEasy.helpers.DtoConverters;
+import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
+import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +25,11 @@ import java.util.Optional;
 public class TelevisionService {
 
     private final TelevisionRepository televisionRepository;
+    private final RemoteControllerRepository remoteControllerRepository;
 
-    public TelevisionService(TelevisionRepository televisionRepository) {
+    public TelevisionService(TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository) {
         this.televisionRepository = televisionRepository;
+        this.remoteControllerRepository = remoteControllerRepository;
     }
 
 
@@ -140,6 +146,29 @@ public class TelevisionService {
 
         } else {
             throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+        }
+    }
+
+
+    ///// For assigning remote controllers to television by id /////
+    public TelevisionDto assignRemoteControllerToTelevision(Long televisionId, IdInputDto remoteId) {
+        Optional<Television> fetchedTelevision =  televisionRepository.findById(televisionId);
+        Optional<RemoteController> fetchedRemoteController = remoteControllerRepository.findById(remoteId.id);
+
+        if (fetchedTelevision.isPresent()) {
+            if (fetchedRemoteController.isPresent()) {
+
+                fetchedTelevision.get().setRemoteController(fetchedRemoteController.get());
+
+                televisionRepository.save(fetchedTelevision.get());
+                fetchedRemoteController.get().setTelevision(fetchedTelevision.get());
+
+                return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
+            } else {
+                throw new RecordNotFoundException("We hebben geen afstandsbediening met ID: " + remoteId.id + ".");
+            }
+        } else {
+            throw new RecordNotFoundException("We hebben geen televisie met ID: " + televisionId + ".");
         }
     }
 

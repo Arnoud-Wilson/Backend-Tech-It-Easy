@@ -1,14 +1,20 @@
 package com.Novi.TechItEasy.controllers;
 
+import com.Novi.TechItEasy.dtos.IdInputDto;
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
+import com.Novi.TechItEasy.dtos.WallBracketDto;
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
-import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import com.Novi.TechItEasy.services.TelevisionService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
+import java.net.URI;
 import java.util.List;
 
 
@@ -55,6 +61,28 @@ public class TelevisionController {
 
             return ResponseEntity.ok(televisionService.changeTelevision(id, television));
     }
+
+    @PutMapping("/{id}/remotecontroller")
+    public ResponseEntity<Object> assignRemoteControllerToTelevision(@PathVariable("id") Long id, @Valid @RequestBody IdInputDto remoteId, BindingResult bindingResult) {
+
+        if (bindingResult.hasFieldErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                stringBuilder.append(fieldError.getField());
+                stringBuilder.append(": ");
+                stringBuilder.append(fieldError.getDefaultMessage());
+                stringBuilder.append("\n");
+            }
+            return ResponseEntity.badRequest().body(stringBuilder);
+        } else {
+
+            TelevisionDto dto = televisionService.assignRemoteControllerToTelevision(id, remoteId);
+            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.getId()).toUriString());
+
+            return ResponseEntity.created(uri).body(dto);
+        }
+    }
+
 
     @DeleteMapping(value ="/{id}")
     public ResponseEntity<String> deleteTelevision(@PathVariable Long id) {

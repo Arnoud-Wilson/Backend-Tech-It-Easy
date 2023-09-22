@@ -1,5 +1,6 @@
 package com.Novi.TechItEasy.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
     @Entity
@@ -22,6 +23,8 @@ import jakarta.persistence.*;
         private Double price;
         @Column(name = "originalStock")
         private int originalStock;
+        @OneToOne(mappedBy = "remoteController")
+        Television television;
 
 
 
@@ -76,4 +79,12 @@ import jakarta.persistence.*;
         public void setOriginalStock(int originalStock) {
             this.originalStock = originalStock;
         }
-}
+
+        public Television getTelevision() {
+            return television;
+        }
+
+        public void setTelevision(Television television) {
+            this.television = television;
+        }
+    }

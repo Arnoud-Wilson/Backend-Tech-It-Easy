@@ -16,6 +16,7 @@ public class DtoConverters {
         dto.brand = remoteController.getBrand();
         dto.price = remoteController.getPrice();
         dto.originalStock = remoteController.getOriginalStock();
+        dto.television = remoteController.getTelevision();
 
     }
 

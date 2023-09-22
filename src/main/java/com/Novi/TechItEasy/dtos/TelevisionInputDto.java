@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 
 public class TelevisionInputDto {
 
-    @NotBlank
     private Long id;
     @NotBlank
     private String brand;
@@ -54,10 +53,6 @@ public class TelevisionInputDto {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getBrand() {

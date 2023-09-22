@@ -1,6 +1,7 @@
 package com.Novi.TechItEasy.dtos;
 
 
+import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import jakarta.validation.constraints.NotBlank;
 
@@ -26,6 +27,7 @@ public class TelevisionDto {
     private Boolean ambiLight;
     private int originalStock;
     private int sold;
+    private RemoteController remoteController;
 
     public static TelevisionDto fromTelevision(Television television) {
 
@@ -48,16 +50,13 @@ public class TelevisionDto {
         dto.ambiLight = television.getAmbiLight();
         dto.originalStock = television.getOriginalStock();
         dto.sold = television.getSold();
+        dto.remoteController = television.getRemoteController();
 
         return dto;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getBrand() {
@@ -186,5 +185,13 @@ public class TelevisionDto {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+
+    public RemoteController getRemoteController() {
+        return remoteController;
+    }
+
+    public void setRemoteController(RemoteController remoteController) {
+        this.remoteController = remoteController;
     }
 }

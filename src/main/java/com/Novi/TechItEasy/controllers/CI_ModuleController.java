@@ -2,7 +2,6 @@ package com.Novi.TechItEasy.controllers;
 
 import com.Novi.TechItEasy.dtos.CI_ModuleDto;
 import com.Novi.TechItEasy.dtos.CI_ModuleInputDto;
-import com.Novi.TechItEasy.dtos.WallBracketDto;
 import com.Novi.TechItEasy.services.CI_ModuleService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

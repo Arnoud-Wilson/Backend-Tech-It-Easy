@@ -1,6 +1,7 @@
 package com.Novi.TechItEasy.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -50,6 +51,11 @@ public class Television {
     private int originalStock;
     @Column(name = "sold")
     private int sold;
+
+    //Don't know why butt without @JsonIgnore there's an error when fetching television whit foreign remote controller key in it//
+    @JsonIgnore
+    @OneToOne
+    RemoteController remoteController;
 
 
 
@@ -187,6 +193,14 @@ public class Television {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+
+    public RemoteController getRemoteController() {
+        return remoteController;
+    }
+
+    public void setRemoteController(RemoteController remoteController) {
+        this.remoteController = remoteController;
     }
 
 
