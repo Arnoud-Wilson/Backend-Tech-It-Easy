@@ -1,5 +1,6 @@
 package com.Novi.TechItEasy.models;
 
+import com.Novi.TechItEasy.dtos.WallBracketDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -243,4 +244,5 @@ public class Television {
                 ", sold=" + sold +
                 '}';
     }
+
 }

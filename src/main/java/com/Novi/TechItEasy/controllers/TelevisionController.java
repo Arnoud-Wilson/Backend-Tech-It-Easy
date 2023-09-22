@@ -57,9 +57,24 @@ public class TelevisionController {
 
 
     @PutMapping(value ="/{id}")
-    public ResponseEntity<TelevisionDto> changeTelevision(@PathVariable Long id, @RequestBody TelevisionInputDto television) {
+    public ResponseEntity<Object> changeTelevision(@PathVariable Long id, @Valid @RequestBody TelevisionInputDto television, BindingResult bindingResult) {
 
-            return ResponseEntity.ok(televisionService.changeTelevision(id, television));
+        if (bindingResult.hasFieldErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                stringBuilder.append(fieldError.getField());
+                stringBuilder.append(": ");
+                stringBuilder.append(fieldError.getDefaultMessage());
+                stringBuilder.append("\n");
+            }
+            return ResponseEntity.badRequest().body(stringBuilder);
+        } else {
+
+            TelevisionDto dto = televisionService.changeTelevision(id, television);
+            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().toUriString());
+
+            return ResponseEntity.created(uri).body(dto);
+        }
     }
 
     @PutMapping("/{id}/remotecontroller")
