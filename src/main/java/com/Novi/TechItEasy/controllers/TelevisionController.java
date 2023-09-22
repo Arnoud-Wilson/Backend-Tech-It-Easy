@@ -83,6 +83,27 @@ public class TelevisionController {
         }
     }
 
+    @PutMapping("/{id}/cimodule")
+    public ResponseEntity<Object> assignCiModuleToTelevision(@PathVariable Long id, @Valid @RequestBody IdInputDto CiModuleId, BindingResult bindingResult) {
+
+        if (bindingResult.hasFieldErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                stringBuilder.append(fieldError.getField());
+                stringBuilder.append(": ");
+                stringBuilder.append(fieldError.getDefaultMessage());
+                stringBuilder.append("\n");
+            }
+            return ResponseEntity.badRequest().body(stringBuilder);
+        } else {
+
+            TelevisionDto dto = televisionService.assignCiModuleToTelevision(id, CiModuleId);
+            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.getId()).toUriString());
+
+            return ResponseEntity.created(uri).body(dto);
+        }
+    }
+
 
     @DeleteMapping(value ="/{id}")
     public ResponseEntity<String> deleteTelevision(@PathVariable Long id) {

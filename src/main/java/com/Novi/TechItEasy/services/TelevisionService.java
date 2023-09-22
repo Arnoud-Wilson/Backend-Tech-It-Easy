@@ -4,9 +4,10 @@ import com.Novi.TechItEasy.dtos.IdInputDto;
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
-import com.Novi.TechItEasy.helpers.DtoConverters;
+import com.Novi.TechItEasy.models.CI_Module;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
+import com.Novi.TechItEasy.repositories.CI_ModuleRepository;
 import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,12 @@ public class TelevisionService {
 
     private final TelevisionRepository televisionRepository;
     private final RemoteControllerRepository remoteControllerRepository;
+    private final CI_ModuleRepository ci_moduleRepository;
 
-    public TelevisionService(TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository) {
+    public TelevisionService(TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository, CI_ModuleRepository ci_moduleRepository) {
         this.televisionRepository = televisionRepository;
         this.remoteControllerRepository = remoteControllerRepository;
+        this.ci_moduleRepository = ci_moduleRepository;
     }
 
 
@@ -166,6 +169,36 @@ public class TelevisionService {
                 return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
             } else {
                 throw new RecordNotFoundException("We hebben geen afstandsbediening met ID: " + remoteId.id + ".");
+            }
+        } else {
+            throw new RecordNotFoundException("We hebben geen televisie met ID: " + televisionId + ".");
+        }
+    }
+
+    ///// For assigning CI module to television by id /////
+    public TelevisionDto assignCiModuleToTelevision(Long televisionId, IdInputDto ciModuleId) {
+        Optional<Television> fetchedTelevision =  televisionRepository.findById(televisionId);
+        Optional<CI_Module> fetchedCiModule = ci_moduleRepository.findById(ciModuleId.id);
+
+        if (fetchedTelevision.isPresent()) {
+            if (fetchedCiModule.isPresent()) {
+                // alle nu bekende televisies van ci module //
+                List<Television> ciModuleTelevisionList = fetchedCiModule.get().getTelevisionList();
+
+                // ci module aan televisie toevoegen en opslaan //
+                fetchedTelevision.get().setCi_module(fetchedCiModule.get());
+                televisionRepository.save(fetchedTelevision.get());
+
+                // televisie aan de lijst van televisies van ci module toevoegen //
+                ciModuleTelevisionList.add(fetchedTelevision.get());
+
+                // ge-update lijst van televisies in ci module opslaan //
+                fetchedCiModule.get().setTelevisionList(ciModuleTelevisionList);
+                ci_moduleRepository.save(fetchedCiModule.get());
+
+                return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
+            } else {
+                throw new RecordNotFoundException("We hebben geen CI module met ID: " + ciModuleId.id + ".");
             }
         } else {
             throw new RecordNotFoundException("We hebben geen televisie met ID: " + televisionId + ".");

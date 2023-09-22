@@ -1,6 +1,7 @@
 package com.Novi.TechItEasy.dtos;
 
 
+import com.Novi.TechItEasy.models.CI_Module;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import jakarta.validation.constraints.NotBlank;
@@ -27,7 +28,9 @@ public class TelevisionDto {
     private Boolean ambiLight;
     private int originalStock;
     private int sold;
+    //TODO: make this a dto?
     private RemoteController remoteController;
+    private CI_Module ci_module;
 
     public static TelevisionDto fromTelevision(Television television) {
 
@@ -51,6 +54,7 @@ public class TelevisionDto {
         dto.originalStock = television.getOriginalStock();
         dto.sold = television.getSold();
         dto.remoteController = television.getRemoteController();
+        dto.ci_module = television.getCi_module();
 
         return dto;
     }
@@ -193,5 +197,13 @@ public class TelevisionDto {
 
     public void setRemoteController(RemoteController remoteController) {
         this.remoteController = remoteController;
+    }
+
+    public CI_Module getCi_module() {
+        return ci_module;
+    }
+
+    public void setCi_module(CI_Module ci_module) {
+        this.ci_module = ci_module;
     }
 }

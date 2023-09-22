@@ -55,7 +55,12 @@ public class Television {
     //Don't know why butt without @JsonIgnore there's an error when fetching television whit foreign remote controller key in it//
     @JsonIgnore
     @OneToOne
-    RemoteController remoteController;
+    private RemoteController remoteController;
+
+    @JsonIgnore
+    @ManyToOne
+    private CI_Module ci_module;
+
 
 
 
@@ -202,6 +207,15 @@ public class Television {
     public void setRemoteController(RemoteController remoteController) {
         this.remoteController = remoteController;
     }
+
+    public CI_Module getCi_module() {
+        return ci_module;
+    }
+
+    public void setCi_module(CI_Module ci_module) {
+        this.ci_module = ci_module;
+    }
+
 
 
     @Override

@@ -1,7 +1,10 @@
 package com.Novi.TechItEasy.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "CI_Modules")
@@ -20,6 +23,10 @@ public class CI_Module {
 
     @Column(name = "price")
     private Double price;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "ci_module")
+    private List<Television> televisionList;
 
 
 
@@ -49,5 +56,13 @@ public class CI_Module {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public List<Television> getTelevisionList() {
+        return televisionList;
+    }
+
+    public void setTelevisionList(List<Television> televisionList) {
+        this.televisionList = televisionList;
     }
 }

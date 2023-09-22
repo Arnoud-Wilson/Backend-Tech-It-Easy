@@ -23,8 +23,9 @@ import jakarta.persistence.*;
         private Double price;
         @Column(name = "originalStock")
         private int originalStock;
+        @JsonIgnore
         @OneToOne(mappedBy = "remoteController")
-        Television television;
+        private Television television;
 
 
 
