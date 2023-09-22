@@ -63,7 +63,7 @@ public class TelevisionController {
     }
 
     @PutMapping("/{id}/remotecontroller")
-    public ResponseEntity<Object> assignRemoteControllerToTelevision(@PathVariable("id") Long id, @Valid @RequestBody IdInputDto remoteId, BindingResult bindingResult) {
+    public ResponseEntity<Object> assignRemoteControllerToTelevision(@PathVariable Long id, @Valid @RequestBody IdInputDto remoteId, BindingResult bindingResult) {
 
         if (bindingResult.hasFieldErrors()) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -98,6 +98,27 @@ public class TelevisionController {
         } else {
 
             TelevisionDto dto = televisionService.assignCiModuleToTelevision(id, CiModuleId);
+            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.getId()).toUriString());
+
+            return ResponseEntity.created(uri).body(dto);
+        }
+    }
+
+    @PutMapping("/{id}/wallbracket")
+    public ResponseEntity<Object> assignWallBracketToTelevision(@PathVariable Long id, @Valid @RequestBody IdInputDto wallBracketId, BindingResult bindingResult) {
+
+        if (bindingResult.hasFieldErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                stringBuilder.append(fieldError.getField());
+                stringBuilder.append(": ");
+                stringBuilder.append(fieldError.getDefaultMessage());
+                stringBuilder.append("\n");
+            }
+            return ResponseEntity.badRequest().body(stringBuilder);
+        } else {
+
+            TelevisionDto dto = televisionService.assignWallBracketToTelevision(id, wallBracketId);
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.getId()).toUriString());
 
             return ResponseEntity.created(uri).body(dto);

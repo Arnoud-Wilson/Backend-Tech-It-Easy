@@ -4,8 +4,10 @@ package com.Novi.TechItEasy.dtos;
 import com.Novi.TechItEasy.models.CI_Module;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
+import com.Novi.TechItEasy.models.WallBracket;
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.List;
 import java.util.Optional;
 
 public class TelevisionDto {
@@ -32,6 +34,9 @@ public class TelevisionDto {
     private RemoteController remoteController;
     private CI_Module ci_module;
 
+    private List<WallBracket> wallBracketList;
+
+
     public static TelevisionDto fromTelevision(Television television) {
 
         TelevisionDto dto = new TelevisionDto();
@@ -55,6 +60,7 @@ public class TelevisionDto {
         dto.sold = television.getSold();
         dto.remoteController = television.getRemoteController();
         dto.ci_module = television.getCi_module();
+        dto.wallBracketList = television.getWallBracketList();
 
         return dto;
     }
@@ -205,5 +211,13 @@ public class TelevisionDto {
 
     public void setCi_module(CI_Module ci_module) {
         this.ci_module = ci_module;
+    }
+
+    public List<WallBracket> getWallBracketList() {
+        return wallBracketList;
+    }
+
+    public void setWallBracketList(List<WallBracket> wallBracketList) {
+        this.wallBracketList = wallBracketList;
     }
 }

@@ -37,6 +37,7 @@ public class DtoConverters {
         dto.adjustable = wallBracket.getAdjustable();
         dto.name = wallBracket.getName();
         dto.price = wallBracket.getPrice();
+        dto.televisionList = wallBracket.getTelevisionList();
     }
 
     public static void wallBracketInputDtoConverter(WallBracket wallBracket, WallBracketInputDto dto) {
@@ -53,6 +54,7 @@ public class DtoConverters {
         dto.name = ci_module.getName();
         dto.type = ci_module.getType();
         dto.price = ci_module.getPrice();
+        dto.televisionList = ci_module.getTelevisionList();
     }
 
     public static void CI_ModuleInputDtoConverter(CI_Module ci_module, CI_ModuleInputDto dto) {

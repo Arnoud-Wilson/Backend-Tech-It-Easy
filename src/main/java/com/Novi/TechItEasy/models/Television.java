@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -61,15 +62,15 @@ public class Television {
     @ManyToOne
     private CI_Module ci_module;
 
+    @JsonIgnore
+    @ManyToMany
+    private List<WallBracket> wallBracketList;
+
 
 
 
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getBrand() {
@@ -216,6 +217,13 @@ public class Television {
         this.ci_module = ci_module;
     }
 
+    public List<WallBracket> getWallBracketList() {
+        return wallBracketList;
+    }
+
+    public void setWallBracketList(List<WallBracket> wallBracketList) {
+        this.wallBracketList = wallBracketList;
+    }
 
 
     @Override

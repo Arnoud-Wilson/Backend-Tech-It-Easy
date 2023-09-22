@@ -7,9 +7,11 @@ import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.models.CI_Module;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
+import com.Novi.TechItEasy.models.WallBracket;
 import com.Novi.TechItEasy.repositories.CI_ModuleRepository;
 import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
+import com.Novi.TechItEasy.repositories.WallBracketRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -28,11 +30,13 @@ public class TelevisionService {
     private final TelevisionRepository televisionRepository;
     private final RemoteControllerRepository remoteControllerRepository;
     private final CI_ModuleRepository ci_moduleRepository;
+    private final WallBracketRepository wallBracketRepository;
 
-    public TelevisionService(TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository, CI_ModuleRepository ci_moduleRepository) {
+    public TelevisionService(TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository, CI_ModuleRepository ci_moduleRepository, WallBracketRepository wallBracketRepository) {
         this.televisionRepository = televisionRepository;
         this.remoteControllerRepository = remoteControllerRepository;
         this.ci_moduleRepository = ci_moduleRepository;
+        this.wallBracketRepository = wallBracketRepository;
     }
 
 
@@ -175,6 +179,7 @@ public class TelevisionService {
         }
     }
 
+
     ///// For assigning CI module to television by id /////
     public TelevisionDto assignCiModuleToTelevision(Long televisionId, IdInputDto ciModuleId) {
         Optional<Television> fetchedTelevision =  televisionRepository.findById(televisionId);
@@ -182,23 +187,48 @@ public class TelevisionService {
 
         if (fetchedTelevision.isPresent()) {
             if (fetchedCiModule.isPresent()) {
-                // alle nu bekende televisies van ci module //
                 List<Television> ciModuleTelevisionList = fetchedCiModule.get().getTelevisionList();
 
-                // ci module aan televisie toevoegen en opslaan //
                 fetchedTelevision.get().setCi_module(fetchedCiModule.get());
                 televisionRepository.save(fetchedTelevision.get());
 
-                // televisie aan de lijst van televisies van ci module toevoegen //
                 ciModuleTelevisionList.add(fetchedTelevision.get());
 
-                // ge-update lijst van televisies in ci module opslaan //
                 fetchedCiModule.get().setTelevisionList(ciModuleTelevisionList);
                 ci_moduleRepository.save(fetchedCiModule.get());
 
                 return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
             } else {
                 throw new RecordNotFoundException("We hebben geen CI module met ID: " + ciModuleId.id + ".");
+            }
+        } else {
+            throw new RecordNotFoundException("We hebben geen televisie met ID: " + televisionId + ".");
+        }
+    }
+
+
+    ///// For assigning wall brackets to television by id /////
+    public TelevisionDto assignWallBracketToTelevision(Long televisionId, IdInputDto wallBracketId) {
+        Optional<Television> fetchedTelevision =  televisionRepository.findById(televisionId);
+        Optional<WallBracket> fetchedWallBracket = wallBracketRepository.findById(wallBracketId.id);
+
+        if (fetchedTelevision.isPresent()) {
+            if (fetchedWallBracket.isPresent()) {
+                List<WallBracket> wallBracketTelevisionList = fetchedTelevision.get().getWallBracketList();
+                List<Television> televisionWallBracketList = fetchedWallBracket.get().getTelevisionList();
+
+                wallBracketTelevisionList.add(fetchedWallBracket.get());
+                televisionWallBracketList.add(fetchedTelevision.get());
+
+                fetchedTelevision.get().setWallBracketList(wallBracketTelevisionList);
+                fetchedWallBracket.get().setTelevisionList(televisionWallBracketList);
+
+                televisionRepository.save(fetchedTelevision.get());
+                wallBracketRepository.save(fetchedWallBracket.get());
+
+                return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
+            } else {
+                throw new RecordNotFoundException("We hebben muur steun met ID: " + wallBracketId.id + ".");
             }
         } else {
             throw new RecordNotFoundException("We hebben geen televisie met ID: " + televisionId + ".");

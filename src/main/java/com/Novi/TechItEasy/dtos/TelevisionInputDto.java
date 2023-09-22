@@ -30,7 +30,7 @@ public class TelevisionInputDto {
 
         Television television = new Television();
 
-        television.setId(this.id);
+//        television.setId(this.id);
         television.setBrand(this.brand);
         television.setName(this.name);
         television.setType(this.type);
