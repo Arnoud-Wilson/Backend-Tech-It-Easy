@@ -1,14 +1,11 @@
 package com.Novi.TechItEasy.dtos;
 
-
 import com.Novi.TechItEasy.models.CI_Module;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
-import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
-import java.util.Optional;
 
 public class TelevisionDto {
 

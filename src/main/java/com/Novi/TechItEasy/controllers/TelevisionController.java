@@ -3,7 +3,6 @@ package com.Novi.TechItEasy.controllers;
 import com.Novi.TechItEasy.dtos.IdInputDto;
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
-import com.Novi.TechItEasy.dtos.WallBracketDto;
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.services.TelevisionService;
 import jakarta.validation.Valid;
@@ -13,11 +12,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
 import java.net.URI;
 import java.util.List;
-
-
 
 
 @RestController
@@ -51,7 +47,11 @@ public class TelevisionController {
         if (television.getBrand() == null || television.getName() == null) {
             throw new MinimalRequiredTelevisionException();
         } else {
-            return ResponseEntity.created(null).body(televisionService.addTelevision(television));
+
+            TelevisionDto dto = televisionService.addTelevision(television);
+            URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.getId()).toUriString());
+
+            return ResponseEntity.created(uri).body(dto);
         }
     }
 

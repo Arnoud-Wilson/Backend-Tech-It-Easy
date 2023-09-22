@@ -1,6 +1,5 @@
 package com.Novi.TechItEasy.models;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
