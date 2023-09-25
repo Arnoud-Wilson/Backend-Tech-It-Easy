@@ -49,7 +49,6 @@ public class Television {
     @Column(name = "sold")
     private int sold;
 
-    //Don't know why butt without @JsonIgnore there's an error when fetching television whit foreign remote controller key in it//
     @JsonIgnore
     @OneToOne
     private RemoteController remoteController;
