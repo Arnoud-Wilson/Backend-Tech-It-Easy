@@ -1,8 +1,8 @@
 package com.Novi.TechItEasy.controllers;
 
-import com.Novi.TechItEasy.dtos.CI_ModuleDto;
-import com.Novi.TechItEasy.dtos.CI_ModuleInputDto;
-import com.Novi.TechItEasy.services.CI_ModuleService;
+import com.Novi.TechItEasy.dtos.CiModuleDto;
+import com.Novi.TechItEasy.dtos.CiModuleInputDto;
+import com.Novi.TechItEasy.services.CiModuleService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -15,32 +15,32 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/ci_modules")
-public class CI_ModuleController {
+@RequestMapping("/cimodules")
+public class CiModuleController {
 
-    private final CI_ModuleService ci_moduleService;
+    private final CiModuleService ciModuleService;
 
-    public CI_ModuleController(CI_ModuleService ci_moduleService) {
-        this.ci_moduleService = ci_moduleService;
+    public CiModuleController(CiModuleService ciModuleService) {
+        this.ciModuleService = ciModuleService;
     }
 
 
     @GetMapping
-    public ResponseEntity<List<CI_ModuleDto>> getCiModules() {
+    public ResponseEntity<List<CiModuleDto>> getCiModules() {
 
-        return ResponseEntity.ok(ci_moduleService.getCiModules());
+        return ResponseEntity.ok(ciModuleService.getCiModules());
     }
 
 
     @GetMapping(value ="/{id}")
-    public ResponseEntity<CI_ModuleDto> getCiModule(@PathVariable Long id) {
+    public ResponseEntity<CiModuleDto> getCiModule(@PathVariable Long id) {
 
-        return ResponseEntity.ok(ci_moduleService.getCiModule(id));
+        return ResponseEntity.ok(ciModuleService.getCiModule(id));
     }
 
 
     @PostMapping
-    public ResponseEntity<Object> createCiModule(@Valid @RequestBody CI_ModuleInputDto ci_module, BindingResult bindingResult) {
+    public ResponseEntity<Object> createCiModule(@Valid @RequestBody CiModuleInputDto ci_module, BindingResult bindingResult) {
 
         if (bindingResult.hasFieldErrors()) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -53,7 +53,7 @@ public class CI_ModuleController {
             return ResponseEntity.badRequest().body(stringBuilder);
         } else {
 
-            CI_ModuleDto dto = ci_moduleService.createCiModule(ci_module);
+            CiModuleDto dto = ciModuleService.createCiModule(ci_module);
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.id).toUriString());
 
             return ResponseEntity.created(uri).body(dto);
@@ -62,15 +62,15 @@ public class CI_ModuleController {
 
 
     @PutMapping(value ="/{id}")
-    public ResponseEntity<CI_ModuleDto> changeCiModule(@PathVariable Long id, @RequestBody CI_ModuleDto ci_module) {
+    public ResponseEntity<CiModuleDto> changeCiModule(@PathVariable Long id, @RequestBody CiModuleDto ci_module) {
 
-        return ResponseEntity.ok(ci_moduleService.changeCiModule(id, ci_module));
+        return ResponseEntity.ok(ciModuleService.changeCiModule(id, ci_module));
     }
 
 
     @DeleteMapping(value ="/{id}")
     public ResponseEntity<String> deleteCiModule(@PathVariable Long id) {
 
-        return ResponseEntity.ok(ci_moduleService.deleteCiModule(id));
+        return ResponseEntity.ok(ciModuleService.deleteCiModule(id));
     }
 }

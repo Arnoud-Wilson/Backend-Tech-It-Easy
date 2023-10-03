@@ -55,7 +55,7 @@ public class Television {
 
     @JsonIgnore
     @ManyToOne
-    private CI_Module ci_module;
+    private CiModule ciModule;
 
     @JsonIgnore
     @ManyToMany
@@ -204,12 +204,12 @@ public class Television {
         this.remoteController = remoteController;
     }
 
-    public CI_Module getCi_module() {
-        return ci_module;
+    public CiModule getCiModule() {
+        return ciModule;
     }
 
-    public void setCi_module(CI_Module ci_module) {
-        this.ci_module = ci_module;
+    public void setCi_module(CiModule ciModule) {
+        this.ciModule = ciModule;
     }
 
     public List<WallBracket> getWallBracketList() {

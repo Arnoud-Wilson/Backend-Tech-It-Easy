@@ -4,7 +4,7 @@ import com.Novi.TechItEasy.models.Television;
 
 import java.util.List;
 
-public class CI_ModuleDto {
+public class CiModuleDto {
 
     public Long id;
     public String name;

@@ -1,7 +1,7 @@
 package com.Novi.TechItEasy.helpers;
 
 import com.Novi.TechItEasy.dtos.*;
-import com.Novi.TechItEasy.models.CI_Module;
+import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.WallBracket;
 
@@ -48,19 +48,19 @@ public class DtoConverters {
         wallBracket.setPrice(dto.price);
     }
 
-    public static void CI_ModuleDtoConverter(CI_Module ci_module, CI_ModuleDto dto) {
+    public static void CiModuleDtoConverter(CiModule ciModule, CiModuleDto dto) {
 
-        dto.id = ci_module.getId();
-        dto.name = ci_module.getName();
-        dto.type = ci_module.getType();
-        dto.price = ci_module.getPrice();
-        dto.televisionList = ci_module.getTelevisionList();
+        dto.id = ciModule.getId();
+        dto.name = ciModule.getName();
+        dto.type = ciModule.getType();
+        dto.price = ciModule.getPrice();
+        dto.televisionList = ciModule.getTelevisionList();
     }
 
-    public static void CI_ModuleInputDtoConverter(CI_Module ci_module, CI_ModuleInputDto dto) {
+    public static void CiModuleInputDtoConverter(CiModule ciModule, CiModuleInputDto dto) {
 
-        ci_module.setName(dto.name);
-        ci_module.setType(dto.type);
-        ci_module.setPrice(dto.price);
+        ciModule.setName(dto.name);
+        ciModule.setType(dto.type);
+        ciModule.setPrice(dto.price);
     }
 }

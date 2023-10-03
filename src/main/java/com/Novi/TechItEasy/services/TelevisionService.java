@@ -4,20 +4,18 @@ import com.Novi.TechItEasy.dtos.IdInputDto;
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
-import com.Novi.TechItEasy.models.CI_Module;
+import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
-import com.Novi.TechItEasy.repositories.CI_ModuleRepository;
+import com.Novi.TechItEasy.repositories.CiModuleRepository;
 import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
 import com.Novi.TechItEasy.repositories.WallBracketRepository;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -29,13 +27,13 @@ public class TelevisionService {
 
     private final TelevisionRepository televisionRepository;
     private final RemoteControllerRepository remoteControllerRepository;
-    private final CI_ModuleRepository ci_moduleRepository;
+    private final CiModuleRepository ciModuleRepository;
     private final WallBracketRepository wallBracketRepository;
 
-    public TelevisionService(TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository, CI_ModuleRepository ci_moduleRepository, WallBracketRepository wallBracketRepository) {
+    public TelevisionService(TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository, CiModuleRepository ciModuleRepository, WallBracketRepository wallBracketRepository) {
         this.televisionRepository = televisionRepository;
         this.remoteControllerRepository = remoteControllerRepository;
-        this.ci_moduleRepository = ci_moduleRepository;
+        this.ciModuleRepository = ciModuleRepository;
         this.wallBracketRepository = wallBracketRepository;
     }
 
@@ -177,7 +175,7 @@ public class TelevisionService {
     ///// For assigning CI module to television by id /////
     public TelevisionDto assignCiModuleToTelevision(Long televisionId, IdInputDto ciModuleId) {
         Optional<Television> fetchedTelevision =  televisionRepository.findById(televisionId);
-        Optional<CI_Module> fetchedCiModule = ci_moduleRepository.findById(ciModuleId.id);
+        Optional<CiModule> fetchedCiModule = ciModuleRepository.findById(ciModuleId.id);
 
         if (fetchedTelevision.isPresent()) {
             if (fetchedCiModule.isPresent()) {
@@ -189,7 +187,7 @@ public class TelevisionService {
                 ciModuleTelevisionList.add(fetchedTelevision.get());
 
                 fetchedCiModule.get().setTelevisionList(ciModuleTelevisionList);
-                ci_moduleRepository.save(fetchedCiModule.get());
+                ciModuleRepository.save(fetchedCiModule.get());
 
                 return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
             } else {

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "CI_Modules")
-public class CI_Module {
+public class CiModule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class CI_Module {
     private Double price;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ci_module")
+    @OneToMany(mappedBy = "ciModule")
     private List<Television> televisionList;
 
 

@@ -11,7 +11,7 @@ public class RemoteControllerDto {
     public String brand;
     public Double price;
     public int originalStock;
-    //:TODO: make this a DTO?
+    //:TODO: make this a DTO or rather only the id!
     public Television television;
 
 }

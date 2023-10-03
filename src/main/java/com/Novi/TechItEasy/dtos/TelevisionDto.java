@@ -1,6 +1,6 @@
 package com.Novi.TechItEasy.dtos;
 
-import com.Novi.TechItEasy.models.CI_Module;
+import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
@@ -29,7 +29,7 @@ public class TelevisionDto {
     private int sold;
     //TODO: make this a dto?
     private RemoteController remoteController;
-    private CI_Module ci_module;
+    private CiModule ciModule;
 
     private List<WallBracket> wallBracketList;
 
@@ -56,7 +56,7 @@ public class TelevisionDto {
         dto.originalStock = television.getOriginalStock();
         dto.sold = television.getSold();
         dto.remoteController = television.getRemoteController();
-        dto.ci_module = television.getCi_module();
+        dto.ciModule = television.getCiModule();
         dto.wallBracketList = television.getWallBracketList();
 
         return dto;
@@ -202,12 +202,12 @@ public class TelevisionDto {
         this.remoteController = remoteController;
     }
 
-    public CI_Module getCi_module() {
-        return ci_module;
+    public CiModule getCi_module() {
+        return ciModule;
     }
 
-    public void setCi_module(CI_Module ci_module) {
-        this.ci_module = ci_module;
+    public void setCi_module(CiModule ci_module) {
+        this.ciModule = ciModule;
     }
 
     public List<WallBracket> getWallBracketList() {
