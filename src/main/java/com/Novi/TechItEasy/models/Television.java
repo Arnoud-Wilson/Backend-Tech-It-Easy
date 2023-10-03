@@ -16,37 +16,23 @@ public class Television {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "brand", nullable = false)
+    @Column(nullable = false)
     private String brand;
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
-    @Column(name = "type")
     private String type;
-    @Column(name = "price")
     private Double price;
-    @Column(name = "availableSize")
     private Double availableSize;
-    @Column(name = "refreshRate")
     private Double refreshRate;
-    @Column(name = "screenType")
     private String screenType;
-    @Column(name = "screenQuality")
     private String screenQuality;
-    @Column(name = "smartTv")
     private Boolean smartTv;
-    @Column(name = "wifi")
     private Boolean wifi;
-    @Column(name = "voiceControl")
     private Boolean voiceControl;
-    @Column(name = "hdr")
     private Boolean hdr;
-    @Column(name = "bluetooth")
     private Boolean bluetooth;
-    @Column(name = "ambiLight")
     private Boolean ambiLight;
-    @Column(name = "originalStock")
     private int originalStock;
-    @Column(name = "sold")
     private int sold;
 
     @JsonIgnore

@@ -9,19 +9,16 @@ import jakarta.persistence.*;
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id", nullable = false, updatable = false)
+        @Column(name = "id", updatable = false)
         private Long id;
-        @Column(name = "compatibleWith",nullable = false)
+        @Column(nullable = false)
         private String compatibleWith;
-        @Column(name = "batteryType")
         private String batteryType;
-        @Column(name = "name", nullable = false)
+        @Column(nullable = false)
         private String name;
-        @Column(name = "brand", nullable = false)
+        @Column(nullable = false)
         private String brand;
-        @Column(name = "price")
         private Double price;
-        @Column(name = "originalStock")
         private int originalStock;
         @JsonIgnore
         @OneToOne(mappedBy = "remoteController")

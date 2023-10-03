@@ -11,19 +11,12 @@ public class WallBracket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "size")
     private String size;
-
-    @Column(name = "adjustable")
     private Boolean adjustable;
-
-    @Column(name = "name")
     private String name;
-
-    @Column(name = "price")
     private Double price;
 
     @ManyToMany(mappedBy = "wallBracketList")

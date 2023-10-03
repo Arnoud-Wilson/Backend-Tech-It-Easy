@@ -11,16 +11,13 @@ public class CiModule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, updatable = false)
+    @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "name")
     private String name;
 
-    @Column(name = "type")
     private String type;
 
-    @Column(name = "price")
     private Double price;
 
     @JsonIgnore
