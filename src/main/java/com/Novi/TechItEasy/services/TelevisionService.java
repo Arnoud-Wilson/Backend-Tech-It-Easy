@@ -235,7 +235,7 @@ public class TelevisionService {
 
             return "We hebben televisie met id: " + id + " uit de database verwijderd.";
         } else {
-            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+            throw new RecordNotFoundException("We hebben geen televisie met id: " + id + " in onze database.");
         }
     }
 }

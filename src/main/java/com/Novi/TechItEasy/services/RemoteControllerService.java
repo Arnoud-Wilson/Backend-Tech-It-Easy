@@ -53,7 +53,7 @@ public class RemoteControllerService {
             return dto;
 
         } else {
-            throw new RecordNotFoundException("We hebben geen afstandsbediening met dit ID.");
+            throw new RecordNotFoundException("We hebben geen afstandsbediening met id: " + id + " in onze database.");
         }
     }
 
@@ -108,7 +108,7 @@ public class RemoteControllerService {
             return remoteControllerDto;
 
         } else {
-            throw new RecordNotFoundException("We hebben geen afstandsbediening met dit ID.");
+            throw new RecordNotFoundException("We hebben geen afstandsbediening met id: " + id + " in onze database.");
         }
     }
 
@@ -120,7 +120,7 @@ public class RemoteControllerService {
 
             return "We hebben afstandsbediening met id: " + id + " uit de database verwijderd.";
         } else {
-            throw new RecordNotFoundException("We hebben geen afstandsbediening met dit ID.");
+            throw new RecordNotFoundException("We hebben geen afstandsbediening met id: " + id + " in onze database.");
         }
     }
 }

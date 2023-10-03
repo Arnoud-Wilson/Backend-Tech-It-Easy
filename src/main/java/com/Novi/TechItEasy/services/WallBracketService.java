@@ -54,7 +54,7 @@ public class WallBracketService {
             return dto;
 
         } else {
-            throw new RecordNotFoundException("We hebben geen muurbeugel met dit ID.");
+            throw new RecordNotFoundException("We hebben geen muurbeugel met id: " + id + " in onze database.");
         }
     }
 
@@ -102,7 +102,7 @@ public class WallBracketService {
             return wallBracketDto;
 
         } else {
-            throw new RecordNotFoundException("We hebben geen muurbeugels met dit ID.");
+            throw new RecordNotFoundException("We hebben geen muurbeugel met id: " + id + " in onze database.");
         }
     }
 
@@ -114,7 +114,7 @@ public class WallBracketService {
 
             return "We hebben muurbeugel met id: " + id + " uit de database verwijderd.";
         } else {
-            throw new RecordNotFoundException("We hebben geen muurbeugel met dit ID.");
+            throw new RecordNotFoundException("We hebben geen muurbeugel met id: " + id + " in onze database.");
         }
     }
 }

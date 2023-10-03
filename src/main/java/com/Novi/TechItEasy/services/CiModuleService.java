@@ -56,7 +56,7 @@ public class CiModuleService {
             return dto;
 
         } else {
-            throw new RecordNotFoundException("We hebben geen ci module met dit ID.");
+            throw new RecordNotFoundException("We hebben geen ci module met id: " + id + " in onze database.");
         }
     }
 
@@ -101,7 +101,7 @@ public class CiModuleService {
             return ciModuleDto;
 
         } else {
-            throw new RecordNotFoundException("We hebben geen ci module met dit ID.");
+            throw new RecordNotFoundException("We hebben geen ci module met id: " + id + " in onze database.");
         }
     }
 
@@ -113,7 +113,7 @@ public class CiModuleService {
 
             return "We hebben ci module met id: " + id + " uit de database verwijderd.";
         } else {
-            throw new RecordNotFoundException("We hebben geen ci module met dit ID.");
+            throw new RecordNotFoundException("We hebben geen ci module met id: " + id + " in onze database.");
         }
     }
 }
