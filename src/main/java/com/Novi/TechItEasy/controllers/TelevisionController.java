@@ -42,17 +42,12 @@ public class TelevisionController {
 
       
     @PostMapping
-    public ResponseEntity<TelevisionDto> addTelevision(@RequestBody TelevisionInputDto television) {
-
-        if (television.getBrand() == null || television.getName() == null) {
-            throw new MinimalRequiredTelevisionException();
-        } else {
+    public ResponseEntity<TelevisionDto> addTelevision(@Valid @RequestBody TelevisionInputDto television) {
 
             TelevisionDto dto = televisionService.addTelevision(television);
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.getId()).toUriString());
 
             return ResponseEntity.created(uri).body(dto);
-        }
     }
 
 
