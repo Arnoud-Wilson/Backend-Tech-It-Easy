@@ -65,7 +65,7 @@ public class TelevisionService {
             TelevisionDto dto = TelevisionDto.fromTelevision(fetchedTelevision.get());
             return dto;
         } else {
-            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+            throw new RecordNotFoundException("We hebben geen televisie met id: " + id + " in onze database.");
         }
     }
 
@@ -144,7 +144,7 @@ public class TelevisionService {
             return TelevisionDto.fromTelevision(televisionRepository.findById(id).get());
 
         } else {
-            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+            throw new RecordNotFoundException("We hebben geen televisie met id: " + id + " in onze database.");
         }
     }
 
@@ -156,11 +156,12 @@ public class TelevisionService {
 
         if (fetchedTelevision.isPresent()) {
             if (fetchedRemoteController.isPresent()) {
+                Television television = fetchedTelevision.get();
+                RemoteController remoteController = fetchedRemoteController.get();
 
-                fetchedTelevision.get().setRemoteController(fetchedRemoteController.get());
+                television.setRemoteController(remoteController);
 
-                televisionRepository.save(fetchedTelevision.get());
-                fetchedRemoteController.get().setTelevision(fetchedTelevision.get());
+                televisionRepository.save(television);
 
                 return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
             } else {
@@ -180,13 +181,15 @@ public class TelevisionService {
         if (fetchedTelevision.isPresent()) {
             if (fetchedCiModule.isPresent()) {
                 List<Television> ciModuleTelevisionList = fetchedCiModule.get().getTelevisionList();
+                Television television = fetchedTelevision.get();
+                CiModule ciModule = fetchedCiModule.get();
 
-                fetchedTelevision.get().setCi_module(fetchedCiModule.get());
-                televisionRepository.save(fetchedTelevision.get());
+                television.setCiModule(ciModule);
+                televisionRepository.save(television);
 
                 ciModuleTelevisionList.add(fetchedTelevision.get());
 
-                fetchedCiModule.get().setTelevisionList(ciModuleTelevisionList);
+                ciModule.setTelevisionList(ciModuleTelevisionList);
                 ciModuleRepository.save(fetchedCiModule.get());
 
                 return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());

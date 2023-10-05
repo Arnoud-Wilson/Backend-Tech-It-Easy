@@ -194,7 +194,7 @@ public class Television {
         return ciModule;
     }
 
-    public void setCi_module(CiModule ciModule) {
+    public void setCiModule(CiModule ciModule) {
         this.ciModule = ciModule;
     }
 
