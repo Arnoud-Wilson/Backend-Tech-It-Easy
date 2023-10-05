@@ -41,7 +41,7 @@ public class TelevisionService {
     /// For fetching all televisions currently in the database /////
     public List<TelevisionDto> getTelevisions() {
 
-        List<Television> televisions = new ArrayList<>(televisionRepository.findAll());
+        List<Television> televisions = televisionRepository.findAll();
         List<TelevisionDto> televisionDtos = new ArrayList<>();
 
         for (Television television : televisions) {

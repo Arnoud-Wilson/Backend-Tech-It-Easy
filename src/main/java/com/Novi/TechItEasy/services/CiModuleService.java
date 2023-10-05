@@ -29,7 +29,7 @@ public class CiModuleService {
     /// For fetching all CI modules currently in the database /////
     public List<CiModuleDto> getCiModules() {
 
-        List<CiModule> CiModules = new ArrayList<>(ciModuleRepository.findAll());
+        List<CiModule> CiModules = ciModuleRepository.findAll();
         List<CiModuleDto> CiModuleDtos = new ArrayList<>();
 
         for (CiModule ciModule : CiModules) {

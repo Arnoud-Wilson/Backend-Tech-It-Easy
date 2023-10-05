@@ -26,7 +26,7 @@ public class RemoteControllerService {
     /// For fetching all remote controllers currently in the database /////
     public List<RemoteControllerDto> getRemoteControllers() {
 
-        List<RemoteController> remoteControllers = new ArrayList<>(remoteControllerRepository.findAll());
+        List<RemoteController> remoteControllers = remoteControllerRepository.findAll();
         List<RemoteControllerDto> remoteControllerDtos = new ArrayList<>();
 
         for (RemoteController remoteController : remoteControllers) {

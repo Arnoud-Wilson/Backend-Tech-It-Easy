@@ -27,7 +27,7 @@ public class WallBracketService {
     /// For fetching all wall brackets currently in the database /////
     public List<WallBracketDto> getWallBrackets() {
 
-        List<WallBracket> wallBrackets = new ArrayList<>(wallBracketRepository.findAll());
+        List<WallBracket> wallBrackets = wallBracketRepository.findAll();
         List<WallBracketDto> wallBracketDtos = new ArrayList<>();
 
         for (WallBracket wallBracket : wallBrackets) {
