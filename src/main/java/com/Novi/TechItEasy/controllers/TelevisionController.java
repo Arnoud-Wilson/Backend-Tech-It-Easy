@@ -42,12 +42,23 @@ public class TelevisionController {
 
       
     @PostMapping
-    public ResponseEntity<TelevisionDto> addTelevision(@Valid @RequestBody TelevisionInputDto television) {
+    public ResponseEntity<Object> addTelevision(@Valid @RequestBody TelevisionInputDto television, BindingResult bindingResult) {
 
+        if (bindingResult.hasFieldErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                stringBuilder.append(fieldError.getField());
+                stringBuilder.append(": ");
+                stringBuilder.append(fieldError.getDefaultMessage());
+                stringBuilder.append("\n");
+            }
+            return ResponseEntity.badRequest().body(stringBuilder);
+        } else {
             TelevisionDto dto = televisionService.addTelevision(television);
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.getId()).toUriString());
 
             return ResponseEntity.created(uri).body(dto);
+        }
     }
 
 

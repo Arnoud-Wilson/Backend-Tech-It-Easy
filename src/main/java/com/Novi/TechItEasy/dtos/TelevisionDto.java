@@ -4,6 +4,7 @@ import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
+import jakarta.validation.constraints.Max;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class TelevisionDto {
     private String brand;
     private String name;
     private String type;
+    @Max(10000)
     private Double price;
     private Double availableSize;
     private Double refreshRate;

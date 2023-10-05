@@ -61,9 +61,20 @@ public class WallBracketController {
 
 
     @PutMapping(value ="/{id}")
-    public ResponseEntity<WallBracketDto> changeWallBracket(@PathVariable Long id, @RequestBody WallBracketDto wallBracket) {
+    public ResponseEntity<Object> changeWallBracket(@PathVariable Long id,@Valid @RequestBody WallBracketDto wallBracket, BindingResult bindingResult) {
 
-        return ResponseEntity.ok(wallBracketService.changeWallBracket(id, wallBracket));
+        if (bindingResult.hasFieldErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                stringBuilder.append(fieldError.getField());
+                stringBuilder.append(": ");
+                stringBuilder.append(fieldError.getDefaultMessage());
+                stringBuilder.append("\n");
+            }
+            return ResponseEntity.badRequest().body(stringBuilder);
+        } else {
+            return ResponseEntity.ok(wallBracketService.changeWallBracket(id, wallBracket));
+        }
     }
 
 

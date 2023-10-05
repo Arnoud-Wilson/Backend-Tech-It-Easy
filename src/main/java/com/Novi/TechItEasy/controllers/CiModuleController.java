@@ -62,9 +62,21 @@ public class CiModuleController {
 
 
     @PutMapping(value ="/{id}")
-    public ResponseEntity<CiModuleDto> changeCiModule(@PathVariable Long id, @RequestBody CiModuleDto ci_module) {
+    public ResponseEntity<Object> changeCiModule(@PathVariable Long id,@Valid @RequestBody CiModuleDto ci_module, BindingResult bindingResult) {
 
-        return ResponseEntity.ok(ciModuleService.changeCiModule(id, ci_module));
+
+        if (bindingResult.hasFieldErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                stringBuilder.append(fieldError.getField());
+                stringBuilder.append(": ");
+                stringBuilder.append(fieldError.getDefaultMessage());
+                stringBuilder.append("\n");
+            }
+            return ResponseEntity.badRequest().body(stringBuilder);
+        } else {
+            return ResponseEntity.ok(ciModuleService.changeCiModule(id, ci_module));
+        }
     }
 
 

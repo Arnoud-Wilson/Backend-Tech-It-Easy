@@ -62,9 +62,20 @@ public class RemoteControllerController {
 
 
     @PutMapping(value ="/{id}")
-    public ResponseEntity<RemoteControllerDto> changeRemoteController(@PathVariable Long id, @RequestBody RemoteControllerDto remoteController) {
+    public ResponseEntity<Object> changeRemoteController(@PathVariable Long id,@Valid @RequestBody RemoteControllerDto remoteController, BindingResult bindingResult) {
 
-        return ResponseEntity.ok(remoteControllerService.changeRemoteController(id, remoteController));
+        if (bindingResult.hasFieldErrors()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (FieldError fieldError : bindingResult.getFieldErrors()) {
+                stringBuilder.append(fieldError.getField());
+                stringBuilder.append(": ");
+                stringBuilder.append(fieldError.getDefaultMessage());
+                stringBuilder.append("\n");
+            }
+            return ResponseEntity.badRequest().body(stringBuilder);
+        } else {
+            return ResponseEntity.ok(remoteControllerService.changeRemoteController(id, remoteController));
+        }
     }
 
 
