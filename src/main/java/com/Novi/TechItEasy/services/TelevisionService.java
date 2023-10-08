@@ -3,6 +3,7 @@ package com.Novi.TechItEasy.services;
 import com.Novi.TechItEasy.dtos.IdInputDto;
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
+import com.Novi.TechItEasy.dtos.WallBracketDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;
@@ -180,17 +181,11 @@ public class TelevisionService {
 
         if (fetchedTelevision.isPresent()) {
             if (fetchedCiModule.isPresent()) {
-                List<Television> ciModuleTelevisionList = fetchedCiModule.get().getTelevisionList();
                 Television television = fetchedTelevision.get();
                 CiModule ciModule = fetchedCiModule.get();
 
                 television.setCiModule(ciModule);
                 televisionRepository.save(television);
-
-                ciModuleTelevisionList.add(fetchedTelevision.get());
-
-                ciModule.setTelevisionList(ciModuleTelevisionList);
-                ciModuleRepository.save(fetchedCiModule.get());
 
                 return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
             } else {
@@ -208,18 +203,16 @@ public class TelevisionService {
         Optional<WallBracket> fetchedWallBracket = wallBracketRepository.findById(wallBracketId.id);
 
         if (fetchedTelevision.isPresent()) {
+            Television television = fetchedTelevision.get();
             if (fetchedWallBracket.isPresent()) {
-                List<WallBracket> wallBracketTelevisionList = fetchedTelevision.get().getWallBracketList();
-                List<Television> televisionWallBracketList = fetchedWallBracket.get().getTelevisionList();
+                WallBracket wallBracket = fetchedWallBracket.get();
+                List<WallBracket> wallBracketTelevisionList = television.getWallBracketList();
 
-                wallBracketTelevisionList.add(fetchedWallBracket.get());
-                televisionWallBracketList.add(fetchedTelevision.get());
+                wallBracketTelevisionList.add(wallBracket);
 
-                fetchedTelevision.get().setWallBracketList(wallBracketTelevisionList);
-                fetchedWallBracket.get().setTelevisionList(televisionWallBracketList);
+                television.setWallBracketList(wallBracketTelevisionList);
 
-                televisionRepository.save(fetchedTelevision.get());
-                wallBracketRepository.save(fetchedWallBracket.get());
+                televisionRepository.save(television);
 
                 return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
             } else {

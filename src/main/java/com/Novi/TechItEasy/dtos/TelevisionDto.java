@@ -30,15 +30,16 @@ public class TelevisionDto {
     private int originalStock;
     private int sold;
     //TODO: make this a dto?
-    private RemoteController remoteController;
-    private CiModule ciModule;
+    private RemoteControllerDto remoteControllerDto;
+    private CiModuleDto ciModuleDto;
 
-    private List<WallBracket> wallBracketList;
+    private List<WallBracketDto> wallBracketDtoList;
 
 
     public static TelevisionDto fromTelevision(Television television) {
 
         TelevisionDto dto = new TelevisionDto();
+
 
         dto.id = television.getId();
         dto.brand = television.getBrand();
@@ -57,9 +58,9 @@ public class TelevisionDto {
         dto.ambiLight = television.getAmbiLight();
         dto.originalStock = television.getOriginalStock();
         dto.sold = television.getSold();
-        dto.remoteController = television.getRemoteController();
-        dto.ciModule = television.getCiModule();
-        dto.wallBracketList = television.getWallBracketList();
+        dto.remoteControllerDto = television.getRemoteController();
+        dto.ciModuleDto = television.getCiModule();
+        dto.wallBracketDtoList = television.getWallBracketList();
 
         return dto;
     }
@@ -196,27 +197,27 @@ public class TelevisionDto {
         this.sold = sold;
     }
 
-    public RemoteController getRemoteController() {
-        return remoteController;
+    public RemoteControllerDto getRemoteControllerDto() {
+        return remoteControllerDto;
     }
 
-    public void setRemoteController(RemoteController remoteController) {
-        this.remoteController = remoteController;
+    public void setRemoteControllerDto(RemoteControllerDto remoteControllerDto) {
+        this.remoteControllerDto = remoteControllerDto;
     }
 
-    public CiModule getCi_module() {
-        return ciModule;
+    public CiModuleDto getCiModuleDto() {
+        return ciModuleDto;
     }
 
-    public void setCi_module(CiModule ci_module) {
-        this.ciModule = ciModule;
+    public void setCiModuleDto(CiModuleDto ciModuleDto) {
+        this.ciModuleDto = ciModuleDto;
     }
 
-    public List<WallBracket> getWallBracketList() {
-        return wallBracketList;
+    public List<WallBracketDto> getWallBracketDtoList() {
+        return wallBracketDtoList;
     }
 
-    public void setWallBracketList(List<WallBracket> wallBracketList) {
-        this.wallBracketList = wallBracketList;
+    public void setWallBracketDtoList(List<WallBracketDto> wallBracketDtoList) {
+        this.wallBracketDtoList = wallBracketDtoList;
     }
 }
