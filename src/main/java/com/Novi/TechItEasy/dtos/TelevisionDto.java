@@ -1,11 +1,13 @@
 package com.Novi.TechItEasy.dtos;
 
+import com.Novi.TechItEasy.helpers.DtoConverters;
 import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
 import jakarta.validation.constraints.Max;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TelevisionDto {
@@ -58,9 +60,27 @@ public class TelevisionDto {
         dto.ambiLight = television.getAmbiLight();
         dto.originalStock = television.getOriginalStock();
         dto.sold = television.getSold();
-        dto.remoteControllerDto = television.getRemoteController();
-        dto.ciModuleDto = television.getCiModule();
-        dto.wallBracketDtoList = television.getWallBracketList();
+
+        RemoteControllerDto convertRemoteDto = new RemoteControllerDto();
+            DtoConverters.remoteControllerDtoConverter(television.getRemoteController(), convertRemoteDto);
+            dto.remoteControllerDto = convertRemoteDto;
+
+        CiModuleDto convertCiDto = new CiModuleDto();
+            DtoConverters.CiModuleDtoConverter(television.getCiModule(), convertCiDto);
+            dto.ciModuleDto = convertCiDto;
+
+        List<WallBracketDto> convertWallBracketDtoList = new ArrayList<>();
+        List<WallBracket> wallBracketList = television.getWallBracketList();
+
+        for (WallBracket wallBracket : wallBracketList) {
+            WallBracketDto wallBracketDto = new WallBracketDto();
+            DtoConverters.wallBracketDtoConverter(wallBracket, wallBracketDto);
+
+            convertWallBracketDtoList.add(wallBracketDto);
+        }
+
+        dto.wallBracketDtoList = convertWallBracketDtoList;
+
 
         return dto;
     }

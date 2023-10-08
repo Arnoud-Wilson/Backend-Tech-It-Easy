@@ -13,6 +13,6 @@ public class WallBracketDto {
     public String name;
     @Max(500)
     public Double price;
-    public List<Television> televisionList;
+    public List<TelevisionDto> televisionDtoList;
 
 }

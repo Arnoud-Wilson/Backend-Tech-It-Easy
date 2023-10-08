@@ -3,7 +3,11 @@ package com.Novi.TechItEasy.helpers;
 import com.Novi.TechItEasy.dtos.*;
 import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;
+import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DtoConverters {
 
@@ -16,7 +20,7 @@ public class DtoConverters {
         dto.brand = remoteController.getBrand();
         dto.price = remoteController.getPrice();
         dto.originalStock = remoteController.getOriginalStock();
-        dto.television = remoteController.getTelevision();
+        dto.televisionDto = TelevisionDto.fromTelevision(remoteController.getTelevision());
 
     }
 
@@ -37,7 +41,15 @@ public class DtoConverters {
         dto.adjustable = wallBracket.getAdjustable();
         dto.name = wallBracket.getName();
         dto.price = wallBracket.getPrice();
-        dto.televisionList = wallBracket.getTelevisionList();
+        dto.televisionDtoList = new ArrayList<>();
+
+        List<Television> tvList = wallBracket.getTelevisionList();
+
+        for (Television tv : tvList) {
+            TelevisionDto tvDto = TelevisionDto.fromTelevision(tv);
+
+            dto.televisionDtoList.add(tvDto);
+        }
     }
 
     public static void wallBracketInputDtoConverter(WallBracket wallBracket, WallBracketInputDto dto) {
@@ -54,7 +66,15 @@ public class DtoConverters {
         dto.name = ciModule.getName();
         dto.type = ciModule.getType();
         dto.price = ciModule.getPrice();
-        dto.televisionList = ciModule.getTelevisionList();
+        dto.televisionDtoList = new ArrayList<>();
+
+        List<Television> tvList = ciModule.getTelevisionList();
+
+        for (Television tv : tvList) {
+            TelevisionDto tvDto = TelevisionDto.fromTelevision(tv);
+
+            dto.televisionDtoList.add(tvDto);
+        }
     }
 
     public static void CiModuleInputDtoConverter(CiModule ciModule, CiModuleInputDto dto) {
