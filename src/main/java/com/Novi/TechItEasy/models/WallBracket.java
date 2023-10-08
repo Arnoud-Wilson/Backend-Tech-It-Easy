@@ -20,6 +20,7 @@ public class WallBracket {
     private Double price;
 
     @ManyToMany(mappedBy = "wallBracketList")
+    @JoinColumn(name = "television_id")
     private List<Television> televisionList;
 
 

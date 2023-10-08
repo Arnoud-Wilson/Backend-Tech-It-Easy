@@ -45,6 +45,8 @@ public class Television {
 
     @JsonIgnore
     @ManyToMany
+    @JoinTable(name = "television_wallbracket_list")
+    @JoinColumn(name = "wallbracket_id")
     private List<WallBracket> wallBracketList;
 
 
