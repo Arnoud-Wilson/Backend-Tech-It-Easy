@@ -1,6 +1,7 @@
 package com.Novi.TechItEasy.dtos;
 
 import com.Novi.TechItEasy.models.Television;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Max;
 
 
@@ -13,5 +14,6 @@ public class CiModuleDto {
     public String type;
     @Max(1000)
     public Double price;
+
     public List<TelevisionDto> televisionDtoList;
 }

@@ -20,7 +20,6 @@ public class CiModule {
 
     private Double price;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "ciModule")
     private List<Television> televisionList;
 

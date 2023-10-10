@@ -1,10 +1,10 @@
 package com.Novi.TechItEasy.dtos;
 
 import com.Novi.TechItEasy.helpers.DtoConverters;
-import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Max;
 
 import java.util.ArrayList;
@@ -31,8 +31,9 @@ public class TelevisionDto {
     private Boolean ambiLight;
     private int originalStock;
     private int sold;
-    //TODO: make this a dto?
+
     private RemoteControllerDto remoteControllerDto;
+
     private CiModuleDto ciModuleDto;
 
     private List<WallBracketDto> wallBracketDtoList;
@@ -60,27 +61,41 @@ public class TelevisionDto {
         dto.ambiLight = television.getAmbiLight();
         dto.originalStock = television.getOriginalStock();
         dto.sold = television.getSold();
+        boolean remoteFlag = false;
+        boolean ciModuleFlag = false;
+        boolean wallBracketFlag = false;
 
-        RemoteControllerDto convertRemoteDto = new RemoteControllerDto();
+        if (television.getRemoteController() != null && !remoteFlag) {
+            RemoteControllerDto convertRemoteDto = new RemoteControllerDto();
+            remoteFlag = true;
             DtoConverters.remoteControllerDtoConverter(television.getRemoteController(), convertRemoteDto);
+            remoteFlag = false;
             dto.remoteControllerDto = convertRemoteDto;
-
-        CiModuleDto convertCiDto = new CiModuleDto();
-            DtoConverters.CiModuleDtoConverter(television.getCiModule(), convertCiDto);
-            dto.ciModuleDto = convertCiDto;
-
-        List<WallBracketDto> convertWallBracketDtoList = new ArrayList<>();
-        List<WallBracket> wallBracketList = television.getWallBracketList();
-
-        for (WallBracket wallBracket : wallBracketList) {
-            WallBracketDto wallBracketDto = new WallBracketDto();
-            DtoConverters.wallBracketDtoConverter(wallBracket, wallBracketDto);
-
-            convertWallBracketDtoList.add(wallBracketDto);
         }
 
-        dto.wallBracketDtoList = convertWallBracketDtoList;
+        if (television.getCiModule() != null && !ciModuleFlag) {
+            CiModuleDto convertCiDto = new CiModuleDto();
+            ciModuleFlag = true;
+            DtoConverters.CiModuleDtoConverter(television.getCiModule(), convertCiDto);
+            ciModuleFlag = false;
+            dto.ciModuleDto = convertCiDto;
+        }
 
+        if (television.getWallBracketList() !=null) {
+            List<WallBracketDto> convertWallBracketDtoList = new ArrayList<>();
+            List<WallBracket> wallBracketList = television.getWallBracketList();
+
+            for (WallBracket wallBracket : wallBracketList) {
+                WallBracketDto wallBracketDto = new WallBracketDto();
+                wallBracketFlag = true;
+                DtoConverters.wallBracketDtoConverter(wallBracket, wallBracketDto);
+                wallBracketFlag = false;
+
+                convertWallBracketDtoList.add(wallBracketDto);
+            }
+
+            dto.wallBracketDtoList = convertWallBracketDtoList;
+        }
 
         return dto;
     }

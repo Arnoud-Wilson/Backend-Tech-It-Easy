@@ -35,18 +35,18 @@ public class Television {
     private int originalStock;
     private int sold;
 
-    @JsonIgnore
     @OneToOne
     private RemoteController remoteController;
 
-    @JsonIgnore
     @ManyToOne
     private CiModule ciModule;
 
-    @JsonIgnore
     @ManyToMany
-    @JoinTable(name = "television_wallbracket_list")
-    @JoinColumn(name = "wallbracket_id")
+    @JoinTable(
+            name = "television_wallbracket_list",
+            joinColumns = @JoinColumn(name = "wallbracket_id"),
+            inverseJoinColumns = @JoinColumn(name = "television_id")
+    )
     private List<WallBracket> wallBracketList;
 
 
