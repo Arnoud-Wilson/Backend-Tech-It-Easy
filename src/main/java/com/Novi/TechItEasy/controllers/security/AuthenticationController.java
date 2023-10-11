@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.controllers;
+package com.Novi.TechItEasy.controllers.security;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

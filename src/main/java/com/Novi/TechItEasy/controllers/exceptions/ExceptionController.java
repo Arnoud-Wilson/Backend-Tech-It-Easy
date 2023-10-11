@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.controllers;
+package com.Novi.TechItEasy.controllers.exceptions;
 
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;

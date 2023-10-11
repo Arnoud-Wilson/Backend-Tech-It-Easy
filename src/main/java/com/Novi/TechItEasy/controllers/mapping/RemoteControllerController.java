@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.controllers;
+package com.Novi.TechItEasy.controllers.mapping;
 
 import com.Novi.TechItEasy.dtos.RemoteControllerDto;
 import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;

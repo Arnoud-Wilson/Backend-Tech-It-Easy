@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.controllers;
+package com.Novi.TechItEasy.controllers.mapping;
 
 import com.Novi.TechItEasy.dtos.CI_ModuleDto;
 import com.Novi.TechItEasy.dtos.CI_ModuleInputDto;
