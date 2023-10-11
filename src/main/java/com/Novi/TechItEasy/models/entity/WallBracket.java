@@ -1,30 +1,33 @@
-package com.Novi.TechItEasy.models;
+package com.Novi.TechItEasy.models.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.Novi.TechItEasy.models.entity.Television;
 import jakarta.persistence.*;
 
 import java.util.List;
 
+
 @Entity
-@Table(name = "CI_Modules")
-public class CI_Module {
+@Table(name = "wallBrackets")
+public class WallBracket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
     private Long id;
 
+    @Column(name = "size")
+    private String size;
+
+    @Column(name = "adjustable")
+    private Boolean adjustable;
+
     @Column(name = "name")
     private String name;
-
-    @Column(name = "type")
-    private String type;
 
     @Column(name = "price")
     private Double price;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "ci_module")
+    @ManyToMany(mappedBy = "wallBracketList")
     private List<Television> televisionList;
 
 
@@ -33,20 +36,28 @@ public class CI_Module {
         return id;
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public Boolean getAdjustable() {
+        return adjustable;
+    }
+
+    public void setAdjustable(Boolean adjustable) {
+        this.adjustable = adjustable;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public Double getPrice() {

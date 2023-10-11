@@ -1,6 +1,6 @@
 package com.Novi.TechItEasy.dtos;
 
-import com.Novi.TechItEasy.models.Television;
+import com.Novi.TechItEasy.models.entity.Television;
 
 public class RemoteControllerDto {
 

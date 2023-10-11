@@ -4,7 +4,7 @@ import com.Novi.TechItEasy.dtos.RemoteControllerDto;
 import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
-import com.Novi.TechItEasy.models.RemoteController;
+import com.Novi.TechItEasy.models.entity.RemoteController;
 import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
 import org.springframework.stereotype.Service;
 

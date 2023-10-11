@@ -3,7 +3,7 @@ package com.Novi.TechItEasy.services;
 import com.Novi.TechItEasy.dtos.*;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
-import com.Novi.TechItEasy.models.WallBracket;
+import com.Novi.TechItEasy.models.entity.WallBracket;
 import com.Novi.TechItEasy.repositories.WallBracketRepository;
 import org.springframework.stereotype.Service;
 

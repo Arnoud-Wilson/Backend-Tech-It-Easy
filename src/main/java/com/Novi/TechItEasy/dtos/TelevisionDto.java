@@ -1,9 +1,9 @@
 package com.Novi.TechItEasy.dtos;
 
-import com.Novi.TechItEasy.models.CI_Module;
-import com.Novi.TechItEasy.models.RemoteController;
-import com.Novi.TechItEasy.models.Television;
-import com.Novi.TechItEasy.models.WallBracket;
+import com.Novi.TechItEasy.models.entity.CI_Module;
+import com.Novi.TechItEasy.models.entity.RemoteController;
+import com.Novi.TechItEasy.models.entity.Television;
+import com.Novi.TechItEasy.models.entity.WallBracket;
 
 import java.util.List;
 

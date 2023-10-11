@@ -1,6 +1,6 @@
 package com.Novi.TechItEasy.dtos;
 
-import com.Novi.TechItEasy.models.Television;
+import com.Novi.TechItEasy.models.entity.Television;
 import jakarta.validation.constraints.NotBlank;
 
 public class TelevisionInputDto {

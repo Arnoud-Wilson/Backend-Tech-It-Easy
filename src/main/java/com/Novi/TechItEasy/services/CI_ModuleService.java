@@ -4,7 +4,7 @@ import com.Novi.TechItEasy.dtos.CI_ModuleDto;
 import com.Novi.TechItEasy.dtos.CI_ModuleInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
-import com.Novi.TechItEasy.models.CI_Module;
+import com.Novi.TechItEasy.models.entity.CI_Module;
 import com.Novi.TechItEasy.repositories.CI_ModuleRepository;
 import org.springframework.stereotype.Service;
 

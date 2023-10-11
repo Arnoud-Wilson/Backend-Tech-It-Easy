@@ -1,9 +1,9 @@
 package com.Novi.TechItEasy.helpers;
 
 import com.Novi.TechItEasy.dtos.*;
-import com.Novi.TechItEasy.models.CI_Module;
-import com.Novi.TechItEasy.models.RemoteController;
-import com.Novi.TechItEasy.models.WallBracket;
+import com.Novi.TechItEasy.models.entity.CI_Module;
+import com.Novi.TechItEasy.models.entity.RemoteController;
+import com.Novi.TechItEasy.models.entity.WallBracket;
 
 public class DtoConverters {
 

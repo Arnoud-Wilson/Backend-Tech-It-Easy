@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.models;
+package com.Novi.TechItEasy.models.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
