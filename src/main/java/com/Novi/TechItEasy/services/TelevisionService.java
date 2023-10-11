@@ -1,17 +1,21 @@
 package com.Novi.TechItEasy.services;
 
+import com.Novi.TechItEasy.dtos.IdInputDto;
 import com.Novi.TechItEasy.dtos.TelevisionDto;
 import com.Novi.TechItEasy.dtos.TelevisionInputDto;
-import com.Novi.TechItEasy.exceptions.IndexOutOfBoundsException;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
+import com.Novi.TechItEasy.models.CiModule;
+import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
+import com.Novi.TechItEasy.models.WallBracket;
+import com.Novi.TechItEasy.repositories.CiModuleRepository;
+import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
 import com.Novi.TechItEasy.repositories.TelevisionRepository;
+import com.Novi.TechItEasy.repositories.WallBracketRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,16 +26,22 @@ import java.util.Optional;
 public class TelevisionService {
 
     private final TelevisionRepository televisionRepository;
+    private final RemoteControllerRepository remoteControllerRepository;
+    private final CiModuleRepository ciModuleRepository;
+    private final WallBracketRepository wallBracketRepository;
 
-    public TelevisionService(TelevisionRepository televisionRepository) {
+    public TelevisionService(TelevisionRepository televisionRepository, RemoteControllerRepository remoteControllerRepository, CiModuleRepository ciModuleRepository, WallBracketRepository wallBracketRepository) {
         this.televisionRepository = televisionRepository;
+        this.remoteControllerRepository = remoteControllerRepository;
+        this.ciModuleRepository = ciModuleRepository;
+        this.wallBracketRepository = wallBracketRepository;
     }
 
 
     /// For fetching all televisions currently in the database /////
     public List<TelevisionDto> getTelevisions() {
 
-        List<Television> televisions = new ArrayList<>(televisionRepository.findAll());
+        List<Television> televisions = televisionRepository.findAll();
         List<TelevisionDto> televisionDtos = new ArrayList<>();
 
         for (Television television : televisions) {
@@ -55,7 +65,7 @@ public class TelevisionService {
             TelevisionDto dto = TelevisionDto.fromTelevision(fetchedTelevision.get());
             return dto;
         } else {
-            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+            throw new RecordNotFoundException("We hebben geen televisie met id: " + id + " in onze database.");
         }
     }
 
@@ -67,13 +77,7 @@ public class TelevisionService {
 
         televisionRepository.save(inputTelevision);
 
-        TelevisionDto dto = TelevisionDto.fromTelevision(inputTelevision);
-
-
-        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + inputTelevision.getId()).toUriString());
-
-        //TODO: return and use uri location
-        return dto;
+        return TelevisionDto.fromTelevision(inputTelevision);
     }
 
 
@@ -140,7 +144,81 @@ public class TelevisionService {
             return TelevisionDto.fromTelevision(televisionRepository.findById(id).get());
 
         } else {
-            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+            throw new RecordNotFoundException("We hebben geen televisie met id: " + id + " in onze database.");
+        }
+    }
+
+
+    ///// For assigning remote controllers to television by id /////
+    public TelevisionDto assignRemoteControllerToTelevision(Long televisionId, IdInputDto remoteId) {
+        Optional<Television> fetchedTelevision =  televisionRepository.findById(televisionId);
+        Optional<RemoteController> fetchedRemoteController = remoteControllerRepository.findById(remoteId.id);
+
+        if (fetchedTelevision.isPresent()) {
+            if (fetchedRemoteController.isPresent()) {
+                Television television = fetchedTelevision.get();
+                RemoteController remoteController = fetchedRemoteController.get();
+
+                television.setRemoteController(remoteController);
+
+                televisionRepository.save(television);
+
+                return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
+            } else {
+                throw new RecordNotFoundException("We hebben geen afstandsbediening met ID: " + remoteId.id + ".");
+            }
+        } else {
+            throw new RecordNotFoundException("We hebben geen televisie met ID: " + televisionId + ".");
+        }
+    }
+
+
+    ///// For assigning CI module to television by id /////
+    public TelevisionDto assignCiModuleToTelevision(Long televisionId, IdInputDto ciModuleId) {
+        Optional<Television> fetchedTelevision =  televisionRepository.findById(televisionId);
+        Optional<CiModule> fetchedCiModule = ciModuleRepository.findById(ciModuleId.id);
+
+        if (fetchedTelevision.isPresent()) {
+            if (fetchedCiModule.isPresent()) {
+                Television television = fetchedTelevision.get();
+                CiModule ciModule = fetchedCiModule.get();
+
+                television.setCiModule(ciModule);
+                televisionRepository.save(television);
+
+                return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
+            } else {
+                throw new RecordNotFoundException("We hebben geen CI module met ID: " + ciModuleId.id + ".");
+            }
+        } else {
+            throw new RecordNotFoundException("We hebben geen televisie met ID: " + televisionId + ".");
+        }
+    }
+
+
+    ///// For assigning wall brackets to television by id /////
+    public TelevisionDto assignWallBracketToTelevision(Long televisionId, IdInputDto wallBracketId) {
+        Optional<Television> fetchedTelevision =  televisionRepository.findById(televisionId);
+        Optional<WallBracket> fetchedWallBracket = wallBracketRepository.findById(wallBracketId.id);
+
+        if (fetchedTelevision.isPresent()) {
+            Television television = fetchedTelevision.get();
+            if (fetchedWallBracket.isPresent()) {
+                WallBracket wallBracket = fetchedWallBracket.get();
+                List<WallBracket> wallBracketTelevisionList = television.getWallBracketList();
+
+                wallBracketTelevisionList.add(wallBracket);
+
+                television.setWallBracketList(wallBracketTelevisionList);
+
+                televisionRepository.save(television);
+
+                return TelevisionDto.fromTelevision(televisionRepository.findById(televisionId).get());
+            } else {
+                throw new RecordNotFoundException("We hebben muur steun met ID: " + wallBracketId.id + ".");
+            }
+        } else {
+            throw new RecordNotFoundException("We hebben geen televisie met ID: " + televisionId + ".");
         }
     }
 
@@ -152,7 +230,7 @@ public class TelevisionService {
 
             return "We hebben televisie met id: " + id + " uit de database verwijderd.";
         } else {
-            throw new RecordNotFoundException("We hebben geen televisie met dit ID.");
+            throw new RecordNotFoundException("We hebben geen televisie met id: " + id + " in onze database.");
         }
     }
 }

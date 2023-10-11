@@ -1,20 +1,23 @@
 package com.Novi.TechItEasy.dtos;
 
-
+import com.Novi.TechItEasy.helpers.DtoConverters;
+import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
-import jakarta.validation.constraints.NotBlank;
+import com.Novi.TechItEasy.models.WallBracket;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Max;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelevisionDto {
 
-    @NotBlank
+
     private Long id;
-    @NotBlank
     private String brand;
-    @NotBlank
     private String name;
     private String type;
+    @Max(10000)
     private Double price;
     private Double availableSize;
     private Double refreshRate;
@@ -29,9 +32,17 @@ public class TelevisionDto {
     private int originalStock;
     private int sold;
 
+    private RemoteControllerDto remoteControllerDto;
+
+    private CiModuleDto ciModuleDto;
+
+    private List<WallBracketDto> wallBracketDtoList;
+
+
     public static TelevisionDto fromTelevision(Television television) {
 
         TelevisionDto dto = new TelevisionDto();
+
 
         dto.id = television.getId();
         dto.brand = television.getBrand();
@@ -50,16 +61,47 @@ public class TelevisionDto {
         dto.ambiLight = television.getAmbiLight();
         dto.originalStock = television.getOriginalStock();
         dto.sold = television.getSold();
+        boolean remoteFlag = false;
+        boolean ciModuleFlag = false;
+        boolean wallBracketFlag = false;
+
+        if (television.getRemoteController() != null && !remoteFlag) {
+            RemoteControllerDto convertRemoteDto = new RemoteControllerDto();
+            remoteFlag = true;
+            DtoConverters.remoteControllerDtoConverter(television.getRemoteController(), convertRemoteDto);
+            remoteFlag = false;
+            dto.remoteControllerDto = convertRemoteDto;
+        }
+
+        if (television.getCiModule() != null && !ciModuleFlag) {
+            CiModuleDto convertCiDto = new CiModuleDto();
+            ciModuleFlag = true;
+            DtoConverters.CiModuleDtoConverter(television.getCiModule(), convertCiDto);
+            ciModuleFlag = false;
+            dto.ciModuleDto = convertCiDto;
+        }
+
+        if (television.getWallBracketList() !=null) {
+            List<WallBracketDto> convertWallBracketDtoList = new ArrayList<>();
+            List<WallBracket> wallBracketList = television.getWallBracketList();
+
+            for (WallBracket wallBracket : wallBracketList) {
+                WallBracketDto wallBracketDto = new WallBracketDto();
+                wallBracketFlag = true;
+                DtoConverters.wallBracketDtoConverter(wallBracket, wallBracketDto);
+                wallBracketFlag = false;
+
+                convertWallBracketDtoList.add(wallBracketDto);
+            }
+
+            dto.wallBracketDtoList = convertWallBracketDtoList;
+        }
 
         return dto;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getBrand() {
@@ -188,5 +230,29 @@ public class TelevisionDto {
 
     public void setSold(int sold) {
         this.sold = sold;
+    }
+
+    public RemoteControllerDto getRemoteControllerDto() {
+        return remoteControllerDto;
+    }
+
+    public void setRemoteControllerDto(RemoteControllerDto remoteControllerDto) {
+        this.remoteControllerDto = remoteControllerDto;
+    }
+
+    public CiModuleDto getCiModuleDto() {
+        return ciModuleDto;
+    }
+
+    public void setCiModuleDto(CiModuleDto ciModuleDto) {
+        this.ciModuleDto = ciModuleDto;
+    }
+
+    public List<WallBracketDto> getWallBracketDtoList() {
+        return wallBracketDtoList;
+    }
+
+    public void setWallBracketDtoList(List<WallBracketDto> wallBracketDtoList) {
+        this.wallBracketDtoList = wallBracketDtoList;
     }
 }

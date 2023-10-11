@@ -1,12 +1,10 @@
 package com.Novi.TechItEasy.models;
 
-
+import com.Novi.TechItEasy.dtos.WallBracketDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
-
-import java.util.Optional;
+import java.util.List;
 
 
 @Entity
@@ -18,70 +16,44 @@ public class Television {
     @Column(name = "id", updatable = false)
     private Long id;
 
-    @Column(name = "brand", nullable = false)
+    @Column(nullable = false)
     private String brand;
-    @Column(name = "name", nullable = false)
+    @Column(nullable = false)
     private String name;
-    @Column(name = "type")
     private String type;
-    @Column(name = "price")
     private Double price;
-    @Column(name = "availableSize")
     private Double availableSize;
-    @Column(name = "refreshRate")
     private Double refreshRate;
-    @Column(name = "screenType")
     private String screenType;
-    @Column(name = "screenQuality")
     private String screenQuality;
-    @Column(name = "smartTv")
     private Boolean smartTv;
-    @Column(name = "wifi")
     private Boolean wifi;
-    @Column(name = "voiceControl")
     private Boolean voiceControl;
-    @Column(name = "hdr")
     private Boolean hdr;
-    @Column(name = "bluetooth")
     private Boolean bluetooth;
-    @Column(name = "ambiLight")
     private Boolean ambiLight;
-    @Column(name = "originalStock")
     private int originalStock;
-    @Column(name = "sold")
     private int sold;
 
+    @OneToOne
+    private RemoteController remoteController;
 
-    public Television() {
-    }
+    @ManyToOne
+    private CiModule ciModule;
 
-    public Television(String brand, String name, String type, Double price, Double availableSize, Double refreshRate, String screenType, String screenQuality, Boolean smartTv, Boolean wifi, Boolean voiceControl, Boolean hdr, Boolean bluetooth, Boolean ambiLight, int originalStock, int sold) {
-        this.brand = brand;
-        this.name = name;
-        this.type = type;
-        this.price = price;
-        this.availableSize = availableSize;
-        this.refreshRate = refreshRate;
-        this.screenType = screenType;
-        this.screenQuality = screenQuality;
-        this.smartTv = smartTv;
-        this.wifi = wifi;
-        this.voiceControl = voiceControl;
-        this.hdr = hdr;
-        this.bluetooth = bluetooth;
-        this.ambiLight = ambiLight;
-        this.originalStock = originalStock;
-        this.sold = sold;
-    }
+    @ManyToMany
+    @JoinTable(
+            name = "television_wallbracket_list",
+            joinColumns = @JoinColumn(name = "wallbracket_id"),
+            inverseJoinColumns = @JoinColumn(name = "television_id")
+    )
+    private List<WallBracket> wallBracketList;
+
 
 
 
     public Long getId() {
         return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getBrand() {
@@ -212,6 +184,30 @@ public class Television {
         this.sold = sold;
     }
 
+    public RemoteController getRemoteController() {
+        return remoteController;
+    }
+
+    public void setRemoteController(RemoteController remoteController) {
+        this.remoteController = remoteController;
+    }
+
+    public CiModule getCiModule() {
+        return ciModule;
+    }
+
+    public void setCiModule(CiModule ciModule) {
+        this.ciModule = ciModule;
+    }
+
+    public List<WallBracket> getWallBracketList() {
+        return wallBracketList;
+    }
+
+    public void setWallBracketList(List<WallBracket> wallBracketList) {
+        this.wallBracketList = wallBracketList;
+    }
+
 
     @Override
     public String toString() {
@@ -235,4 +231,5 @@ public class Television {
                 ", sold=" + sold +
                 '}';
     }
+
 }

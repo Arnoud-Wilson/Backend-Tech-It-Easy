@@ -1,11 +1,14 @@
 package com.Novi.TechItEasy.dtos;
 
 import com.Novi.TechItEasy.models.Television;
+import jakarta.validation.constraints.NotBlank;
 
 public class TelevisionInputDto {
 
     private Long id;
+    @NotBlank
     private String brand;
+    @NotBlank
     private String name;
     private String type;
     private Double price;
@@ -27,7 +30,6 @@ public class TelevisionInputDto {
 
         Television television = new Television();
 
-        television.setId(this.id);
         television.setBrand(this.brand);
         television.setName(this.name);
         television.setType(this.type);
@@ -50,10 +52,6 @@ public class TelevisionInputDto {
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getBrand() {
