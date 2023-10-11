@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-
 /*TODO annotatie*/
 public class CustomUserDetailsService implements UserDetailsService {
 
