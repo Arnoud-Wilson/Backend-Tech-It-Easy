@@ -1,17 +1,14 @@
-package com.Novi.TechItEasy.dtos;
+package com.Novi.TechItEasy.dtos.entity;
 
-import com.Novi.TechItEasy.models.entity.CI_Module;
-import com.Novi.TechItEasy.models.entity.RemoteController;
 import com.Novi.TechItEasy.models.entity.Television;
-import com.Novi.TechItEasy.models.entity.WallBracket;
+import jakarta.validation.constraints.NotBlank;
 
-import java.util.List;
-
-public class TelevisionDto {
-
+public class TelevisionInputDto {
 
     private Long id;
+    @NotBlank
     private String brand;
+    @NotBlank
     private String name;
     private String type;
     private Double price;
@@ -27,39 +24,31 @@ public class TelevisionDto {
     private Boolean ambiLight;
     private int originalStock;
     private int sold;
-    //TODO: make this a dto?
-    private RemoteController remoteController;
-    private CI_Module ci_module;
-
-    private List<WallBracket> wallBracketList;
 
 
-    public static TelevisionDto fromTelevision(Television television) {
+    public Television toTelevision() {
 
-        TelevisionDto dto = new TelevisionDto();
+        Television television = new Television();
 
-        dto.id = television.getId();
-        dto.brand = television.getBrand();
-        dto.name = television.getName();
-        dto.type = television.getType();
-        dto.price = television.getPrice();
-        dto.availableSize = television.getAvailableSize();
-        dto.refreshRate = television.getRefreshRate();
-        dto.screenType = television.getScreenType();
-        dto.screenQuality = television.getScreenQuality();
-        dto.smartTv = television.getSmartTv();
-        dto.wifi = television.getWifi();
-        dto.voiceControl = television.getVoiceControl();
-        dto.hdr = television.getHdr();
-        dto.bluetooth = television.getBluetooth();
-        dto.ambiLight = television.getAmbiLight();
-        dto.originalStock = television.getOriginalStock();
-        dto.sold = television.getSold();
-        dto.remoteController = television.getRemoteController();
-        dto.ci_module = television.getCi_module();
-        dto.wallBracketList = television.getWallBracketList();
+//        television.setId(this.id);
+        television.setBrand(this.brand);
+        television.setName(this.name);
+        television.setType(this.type);
+        television.setPrice(this.price);
+        television.setAvailableSize(this.availableSize);
+        television.setRefreshRate(this.refreshRate);
+        television.setScreenType(this.screenType);
+        television.setScreenQuality(this.screenQuality);
+        television.setSmartTv(this.smartTv);
+        television.setWifi(this.wifi);
+        television.setVoiceControl(this.voiceControl);
+        television.setHdr(this.hdr);
+        television.setBluetooth(this.bluetooth);
+        television.setAmbiLight(this.ambiLight);
+        television.setOriginalStock(this.originalStock);
+        television.setSold(this.sold);
 
-        return dto;
+        return television;
     }
 
     public Long getId() {
@@ -192,29 +181,5 @@ public class TelevisionDto {
 
     public void setSold(int sold) {
         this.sold = sold;
-    }
-
-    public RemoteController getRemoteController() {
-        return remoteController;
-    }
-
-    public void setRemoteController(RemoteController remoteController) {
-        this.remoteController = remoteController;
-    }
-
-    public CI_Module getCi_module() {
-        return ci_module;
-    }
-
-    public void setCi_module(CI_Module ci_module) {
-        this.ci_module = ci_module;
-    }
-
-    public List<WallBracket> getWallBracketList() {
-        return wallBracketList;
-    }
-
-    public void setWallBracketList(List<WallBracket> wallBracketList) {
-        this.wallBracketList = wallBracketList;
     }
 }

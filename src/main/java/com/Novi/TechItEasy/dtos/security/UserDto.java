@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.dtos;
+package com.Novi.TechItEasy.dtos.security;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

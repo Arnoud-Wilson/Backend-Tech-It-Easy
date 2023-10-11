@@ -1,7 +1,7 @@
 package com.Novi.TechItEasy.controllers.mapping;
 
-import com.Novi.TechItEasy.dtos.CI_ModuleDto;
-import com.Novi.TechItEasy.dtos.CI_ModuleInputDto;
+import com.Novi.TechItEasy.dtos.entity.CI_ModuleDto;
+import com.Novi.TechItEasy.dtos.entity.CI_ModuleInputDto;
 import com.Novi.TechItEasy.services.CI_ModuleService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

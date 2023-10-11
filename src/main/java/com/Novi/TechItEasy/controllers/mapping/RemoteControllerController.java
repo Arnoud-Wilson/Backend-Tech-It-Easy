@@ -1,7 +1,7 @@
 package com.Novi.TechItEasy.controllers.mapping;
 
-import com.Novi.TechItEasy.dtos.RemoteControllerDto;
-import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;
+import com.Novi.TechItEasy.dtos.entity.RemoteControllerDto;
+import com.Novi.TechItEasy.dtos.entity.RemoteControllerInputDto;
 import com.Novi.TechItEasy.services.RemoteControllerService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

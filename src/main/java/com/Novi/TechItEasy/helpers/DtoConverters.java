@@ -1,6 +1,6 @@
 package com.Novi.TechItEasy.helpers;
 
-import com.Novi.TechItEasy.dtos.*;
+import com.Novi.TechItEasy.dtos.entity.*;
 import com.Novi.TechItEasy.models.entity.CI_Module;
 import com.Novi.TechItEasy.models.entity.RemoteController;
 import com.Novi.TechItEasy.models.entity.WallBracket;

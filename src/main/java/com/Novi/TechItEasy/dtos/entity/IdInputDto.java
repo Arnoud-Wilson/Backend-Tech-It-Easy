@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.dtos;
+package com.Novi.TechItEasy.dtos.entity;
 
 import jakarta.validation.constraints.NotNull;
 

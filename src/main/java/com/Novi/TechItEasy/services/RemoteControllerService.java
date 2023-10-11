@@ -1,7 +1,7 @@
 package com.Novi.TechItEasy.services;
 
-import com.Novi.TechItEasy.dtos.RemoteControllerDto;
-import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;
+import com.Novi.TechItEasy.dtos.entity.RemoteControllerDto;
+import com.Novi.TechItEasy.dtos.entity.RemoteControllerInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
 import com.Novi.TechItEasy.models.entity.RemoteController;

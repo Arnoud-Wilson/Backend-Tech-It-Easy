@@ -1,8 +1,8 @@
 package com.Novi.TechItEasy.controllers.mapping;
 
-import com.Novi.TechItEasy.dtos.IdInputDto;
-import com.Novi.TechItEasy.dtos.TelevisionDto;
-import com.Novi.TechItEasy.dtos.TelevisionInputDto;
+import com.Novi.TechItEasy.dtos.entity.IdInputDto;
+import com.Novi.TechItEasy.dtos.entity.TelevisionDto;
+import com.Novi.TechItEasy.dtos.entity.TelevisionInputDto;
 import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
 import com.Novi.TechItEasy.services.TelevisionService;
 import jakarta.validation.Valid;
