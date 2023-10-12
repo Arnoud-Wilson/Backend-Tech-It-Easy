@@ -1,31 +1,39 @@
 package com.Novi.TechItEasy.controllers.security;
 
+import com.Novi.TechItEasy.dtos.security.AuthenticationRequest;
+import com.Novi.TechItEasy.dtos.security.AuthenticationResponse;
+import com.Novi.TechItEasy.utilities.JwtUtility;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-@CrossOrigin
 @RestController
 public class AuthenticationController {
 
-    /*TODO inject authentionManager, userDetailService en jwtUtil*/
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailsService userDetailsService;
+    private final JwtUtility jwtUtility;
 
-    /*
-         Deze methode geeft de principal (basis user gegevens) terug van de ingelogde gebruiker
-     */
+    public AuthenticationController(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtUtility jwtUtility) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.jwtUtility = jwtUtility;
+    }
+
+
     @GetMapping(value = "/authenticated")
     public ResponseEntity<Object> authenticated(Authentication authentication, Principal principal) {
         return ResponseEntity.ok().body(principal);
     }
 
-    /*
-    Deze methode geeft het JWT token terug wanneer de gebruiker de juiste inloggegevens op geeft.
-     */
+
     @PostMapping(value = "/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 
@@ -38,13 +46,13 @@ public class AuthenticationController {
             );
         }
         catch (BadCredentialsException ex) {
-            throw new Exception("Incorrect username or password", ex);
+            throw new Exception("Verkeerde username of password", ex);
         }
 
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(username);
 
-        final String jwt = jwtUtil.generateToken(userDetails);
+        final String jwt = jwtUtility.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
