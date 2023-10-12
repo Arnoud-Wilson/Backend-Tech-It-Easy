@@ -3,17 +3,15 @@ package com.Novi.TechItEasy.exceptions;
 import java.io.Serial;
 
 
-public class RecordNotFoundException extends RuntimeException {
+public class BadRequestException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    public RecordNotFoundException() {
-
+    public BadRequestException() {
         super();
     }
 
-    public RecordNotFoundException(String message) {
-
+    public BadRequestException(String message) {
         super(message);
     }
 }

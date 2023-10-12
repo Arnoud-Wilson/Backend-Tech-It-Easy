@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.helpers;
+package com.Novi.TechItEasy.repositories.helpers;
 
 import com.Novi.TechItEasy.dtos.entity.*;
 import com.Novi.TechItEasy.models.entity.CI_Module;
