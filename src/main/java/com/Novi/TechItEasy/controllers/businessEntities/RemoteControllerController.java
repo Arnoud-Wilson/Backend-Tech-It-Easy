@@ -1,11 +1,7 @@
 package com.Novi.TechItEasy.controllers.businessEntities;
 
-import com.Novi.TechItEasy.dtos.RemoteControllerDto;
-import com.Novi.TechItEasy.dtos.RemoteControllerInputDto;
-import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
-import com.Novi.TechItEasy.models.RemoteController;
-import com.Novi.TechItEasy.models.Television;
-import com.Novi.TechItEasy.repositories.RemoteControllerRepository;
+import com.Novi.TechItEasy.dtos.businessEntities.RemoteControllerDto;
+import com.Novi.TechItEasy.dtos.businessEntities.RemoteControllerInputDto;
 import com.Novi.TechItEasy.services.RemoteControllerService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +12,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/remotecontrollers")

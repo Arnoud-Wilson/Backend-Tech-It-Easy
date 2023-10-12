@@ -1,6 +1,7 @@
 package com.Novi.TechItEasy.services;
 
-import com.Novi.TechItEasy.dtos.*;
+import com.Novi.TechItEasy.dtos.businessEntities.WallBracketDto;
+import com.Novi.TechItEasy.dtos.businessEntities.WallBracketInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
 import com.Novi.TechItEasy.models.WallBracket;

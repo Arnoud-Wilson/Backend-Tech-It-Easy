@@ -1,7 +1,5 @@
 package com.Novi.TechItEasy.models;
 
-import com.Novi.TechItEasy.dtos.WallBracketDto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;

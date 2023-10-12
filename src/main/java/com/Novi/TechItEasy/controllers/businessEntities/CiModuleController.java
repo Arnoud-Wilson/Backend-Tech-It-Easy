@@ -1,7 +1,7 @@
 package com.Novi.TechItEasy.controllers.businessEntities;
 
-import com.Novi.TechItEasy.dtos.CiModuleDto;
-import com.Novi.TechItEasy.dtos.CiModuleInputDto;
+import com.Novi.TechItEasy.dtos.businessEntities.CiModuleDto;
+import com.Novi.TechItEasy.dtos.businessEntities.CiModuleInputDto;
 import com.Novi.TechItEasy.services.CiModuleService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;

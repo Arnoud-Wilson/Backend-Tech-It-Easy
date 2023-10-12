@@ -1,8 +1,8 @@
 package com.Novi.TechItEasy.services;
 
 
-import com.Novi.TechItEasy.dtos.CiModuleDto;
-import com.Novi.TechItEasy.dtos.CiModuleInputDto;
+import com.Novi.TechItEasy.dtos.businessEntities.CiModuleDto;
+import com.Novi.TechItEasy.dtos.businessEntities.CiModuleInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
 

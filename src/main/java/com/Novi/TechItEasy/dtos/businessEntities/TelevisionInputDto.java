@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.dtos;
+package com.Novi.TechItEasy.dtos.businessEntities;
 
 import com.Novi.TechItEasy.models.Television;
 import jakarta.validation.constraints.NotBlank;

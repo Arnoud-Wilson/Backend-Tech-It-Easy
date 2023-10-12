@@ -1,5 +1,6 @@
-package com.Novi.TechItEasy.dtos;
+package com.Novi.TechItEasy.dtos.businessEntities;
 
+import com.Novi.TechItEasy.dtos.businessEntities.TelevisionDto;
 import jakarta.validation.constraints.Max;
 
 import java.util.List;

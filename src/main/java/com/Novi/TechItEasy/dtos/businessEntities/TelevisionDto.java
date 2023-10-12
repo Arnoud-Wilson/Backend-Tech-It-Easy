@@ -1,10 +1,8 @@
-package com.Novi.TechItEasy.dtos;
+package com.Novi.TechItEasy.dtos.businessEntities;
 
 import com.Novi.TechItEasy.helpers.DtoConverters;
-import com.Novi.TechItEasy.models.RemoteController;
 import com.Novi.TechItEasy.models.Television;
 import com.Novi.TechItEasy.models.WallBracket;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.Max;
 
 import java.util.ArrayList;

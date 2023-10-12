@@ -1,8 +1,8 @@
 package com.Novi.TechItEasy.services;
 
-import com.Novi.TechItEasy.dtos.IdInputDto;
-import com.Novi.TechItEasy.dtos.TelevisionDto;
-import com.Novi.TechItEasy.dtos.TelevisionInputDto;
+import com.Novi.TechItEasy.dtos.businessEntities.IdInputDto;
+import com.Novi.TechItEasy.dtos.businessEntities.TelevisionDto;
+import com.Novi.TechItEasy.dtos.businessEntities.TelevisionInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.models.CiModule;
 import com.Novi.TechItEasy.models.RemoteController;

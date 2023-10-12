@@ -1,9 +1,8 @@
 package com.Novi.TechItEasy.controllers.businessEntities;
 
-import com.Novi.TechItEasy.dtos.IdInputDto;
-import com.Novi.TechItEasy.dtos.TelevisionDto;
-import com.Novi.TechItEasy.dtos.TelevisionInputDto;
-import com.Novi.TechItEasy.exceptions.MinimalRequiredTelevisionException;
+import com.Novi.TechItEasy.dtos.businessEntities.IdInputDto;
+import com.Novi.TechItEasy.dtos.businessEntities.TelevisionDto;
+import com.Novi.TechItEasy.dtos.businessEntities.TelevisionInputDto;
 import com.Novi.TechItEasy.services.TelevisionService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
