@@ -1,4 +1,4 @@
-package com.Novi.TechItEasy.services;
+package com.Novi.TechItEasy.services.businessEntities;
 
 
 import com.Novi.TechItEasy.dtos.businessEntities.CiModuleDto;

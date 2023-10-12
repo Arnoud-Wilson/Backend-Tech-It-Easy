@@ -2,7 +2,7 @@ package com.Novi.TechItEasy.controllers.businessEntities;
 
 import com.Novi.TechItEasy.dtos.businessEntities.RemoteControllerDto;
 import com.Novi.TechItEasy.dtos.businessEntities.RemoteControllerInputDto;
-import com.Novi.TechItEasy.services.RemoteControllerService;
+import com.Novi.TechItEasy.services.businessEntities.RemoteControllerService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

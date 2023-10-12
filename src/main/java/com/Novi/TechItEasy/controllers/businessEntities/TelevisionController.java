@@ -3,7 +3,7 @@ package com.Novi.TechItEasy.controllers.businessEntities;
 import com.Novi.TechItEasy.dtos.businessEntities.IdInputDto;
 import com.Novi.TechItEasy.dtos.businessEntities.TelevisionDto;
 import com.Novi.TechItEasy.dtos.businessEntities.TelevisionInputDto;
-import com.Novi.TechItEasy.services.TelevisionService;
+import com.Novi.TechItEasy.services.businessEntities.TelevisionService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;

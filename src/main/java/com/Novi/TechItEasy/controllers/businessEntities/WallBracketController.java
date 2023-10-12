@@ -2,7 +2,7 @@ package com.Novi.TechItEasy.controllers.businessEntities;
 
 import com.Novi.TechItEasy.dtos.businessEntities.WallBracketDto;
 import com.Novi.TechItEasy.dtos.businessEntities.WallBracketInputDto;
-import com.Novi.TechItEasy.services.WallBracketService;
+import com.Novi.TechItEasy.services.businessEntities.WallBracketService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
