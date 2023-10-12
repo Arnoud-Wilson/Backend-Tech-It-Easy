@@ -4,7 +4,7 @@ import com.Novi.TechItEasy.dtos.businessEntities.WallBracketDto;
 import com.Novi.TechItEasy.dtos.businessEntities.WallBracketInputDto;
 import com.Novi.TechItEasy.exceptions.RecordNotFoundException;
 import com.Novi.TechItEasy.helpers.DtoConverters;
-import com.Novi.TechItEasy.models.WallBracket;
+import com.Novi.TechItEasy.models.businessEntities.WallBracket;
 import com.Novi.TechItEasy.repositories.WallBracketRepository;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
 package com.Novi.TechItEasy.dtos.businessEntities;
 
 import com.Novi.TechItEasy.helpers.DtoConverters;
-import com.Novi.TechItEasy.models.Television;
-import com.Novi.TechItEasy.models.WallBracket;
+import com.Novi.TechItEasy.models.businessEntities.Television;
+import com.Novi.TechItEasy.models.businessEntities.WallBracket;
 import jakarta.validation.constraints.Max;
 
 import java.util.ArrayList;

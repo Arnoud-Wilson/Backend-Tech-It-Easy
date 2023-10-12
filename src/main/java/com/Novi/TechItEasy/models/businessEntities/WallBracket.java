@@ -1,5 +1,6 @@
-package com.Novi.TechItEasy.models;
+package com.Novi.TechItEasy.models.businessEntities;
 
+import com.Novi.TechItEasy.models.businessEntities.Television;
 import jakarta.persistence.*;
 
 import java.util.List;

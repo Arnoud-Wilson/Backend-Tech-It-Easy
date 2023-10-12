@@ -1,5 +1,5 @@
 package com.Novi.TechItEasy.repositories;
-import com.Novi.TechItEasy.models.Television;
+import com.Novi.TechItEasy.models.businessEntities.Television;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

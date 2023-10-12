@@ -1,6 +1,5 @@
-package com.Novi.TechItEasy.models;
+package com.Novi.TechItEasy.models.businessEntities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
