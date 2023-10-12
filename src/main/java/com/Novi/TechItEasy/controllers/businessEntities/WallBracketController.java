@@ -1,8 +1,8 @@
-package com.Novi.TechItEasy.controllers;
+package com.Novi.TechItEasy.controllers.businessEntities;
 
-import com.Novi.TechItEasy.dtos.CiModuleDto;
-import com.Novi.TechItEasy.dtos.CiModuleInputDto;
-import com.Novi.TechItEasy.services.CiModuleService;
+import com.Novi.TechItEasy.dtos.WallBracketDto;
+import com.Novi.TechItEasy.dtos.WallBracketInputDto;
+import com.Novi.TechItEasy.services.WallBracketService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -13,34 +13,33 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/cimodules")
-public class CiModuleController {
+@RequestMapping("/wallBrackets")
+public class WallBracketController {
 
-    private final CiModuleService ciModuleService;
+    private final WallBracketService wallBracketService;
 
-    public CiModuleController(CiModuleService ciModuleService) {
-        this.ciModuleService = ciModuleService;
+    public WallBracketController(WallBracketService wallBracketService) {
+        this.wallBracketService = wallBracketService;
     }
 
 
     @GetMapping
-    public ResponseEntity<List<CiModuleDto>> getCiModules() {
+    public ResponseEntity<List<WallBracketDto>> getWallBrackets() {
 
-        return ResponseEntity.ok(ciModuleService.getCiModules());
+        return ResponseEntity.ok(wallBracketService.getWallBrackets());
     }
 
 
     @GetMapping(value ="/{id}")
-    public ResponseEntity<CiModuleDto> getCiModule(@PathVariable Long id) {
+    public ResponseEntity<WallBracketDto> getWallBracket(@PathVariable Long id) {
 
-        return ResponseEntity.ok(ciModuleService.getCiModule(id));
+        return ResponseEntity.ok(wallBracketService.getWallBracket(id));
     }
 
 
     @PostMapping
-    public ResponseEntity<Object> createCiModule(@Valid @RequestBody CiModuleInputDto ci_module, BindingResult bindingResult) {
+    public ResponseEntity<Object> createWallBracket(@Valid @RequestBody WallBracketInputDto wallBracket, BindingResult bindingResult) {
 
         if (bindingResult.hasFieldErrors()) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -53,7 +52,7 @@ public class CiModuleController {
             return ResponseEntity.badRequest().body(stringBuilder);
         } else {
 
-            CiModuleDto dto = ciModuleService.createCiModule(ci_module);
+            WallBracketDto dto = wallBracketService.createWallBracket(wallBracket);
             URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/" + dto.id).toUriString());
 
             return ResponseEntity.created(uri).body(dto);
@@ -62,8 +61,7 @@ public class CiModuleController {
 
 
     @PutMapping(value ="/{id}")
-    public ResponseEntity<Object> changeCiModule(@PathVariable Long id,@Valid @RequestBody CiModuleDto ci_module, BindingResult bindingResult) {
-
+    public ResponseEntity<Object> changeWallBracket(@PathVariable Long id,@Valid @RequestBody WallBracketDto wallBracket, BindingResult bindingResult) {
 
         if (bindingResult.hasFieldErrors()) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -75,14 +73,14 @@ public class CiModuleController {
             }
             return ResponseEntity.badRequest().body(stringBuilder);
         } else {
-            return ResponseEntity.ok(ciModuleService.changeCiModule(id, ci_module));
+            return ResponseEntity.ok(wallBracketService.changeWallBracket(id, wallBracket));
         }
     }
 
 
     @DeleteMapping(value ="/{id}")
-    public ResponseEntity<String> deleteCiModule(@PathVariable Long id) {
+    public ResponseEntity<String> deleteWallBracket(@PathVariable Long id) {
 
-        return ResponseEntity.ok(ciModuleService.deleteCiModule(id));
+        return ResponseEntity.ok(wallBracketService.deleteWallBracket(id));
     }
 }
