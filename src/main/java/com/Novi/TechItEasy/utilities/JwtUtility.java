@@ -17,7 +17,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtility {
 
-    private final static String SECRET_KEY = "JammerDatWeBijnaAanHetEindVanDezeSuperToffeBootcampZijnBeland!";
+    private final static String SECRET_KEY = "jammerDatDezeBootcampBijnaAfgelopenIs";
 
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);

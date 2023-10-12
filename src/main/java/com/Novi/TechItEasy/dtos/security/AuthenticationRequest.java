@@ -1,5 +1,7 @@
 package com.Novi.TechItEasy.dtos.security;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 public class AuthenticationRequest {
 
     private String username;

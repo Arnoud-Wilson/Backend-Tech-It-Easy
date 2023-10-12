@@ -45,8 +45,8 @@ public class UserDto {
         this.username = username;
     }
 
-    public void setPassword(String password, PasswordEncoder passwordEncoder) {
-        this.password = passwordEncoder.encode(password);
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setEnabled(Boolean enabled) {
