@@ -1,10 +1,15 @@
 package com.Novi.TechItEasy.controllers.security;
 
+import com.Novi.TechItEasy.dtos.security.AuthenticationRequest;
+import com.Novi.TechItEasy.dtos.security.AuthenticationResponse;
+import com.Novi.TechItEasy.utilities.JwtUtility;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,10 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+
 @RestController
 public class AuthenticationController {
 
-    /*TODO inject authentionManager, userDetailService en jwtUtil*/
+    private final AuthenticationManager authenticationManager;
+    private final UserDetailsService userDetailsService;
+    private final JwtUtility jwtUtility;
+
+    public AuthenticationController(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtUtility jwtUtility) {
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+        this.jwtUtility = jwtUtility;
+    }
 
     /*
          Deze methode geeft de principal (basis user gegevens) terug van de ingelogde gebruiker
@@ -40,13 +54,13 @@ public class AuthenticationController {
             );
         }
         catch (BadCredentialsException ex) {
-            throw new Exception("Incorrect username or password", ex);
+            throw new Exception("Verkeerde username of password", ex);
         }
 
         final UserDetails userDetails = userDetailsService
                 .loadUserByUsername(username);
 
-        final String jwt = jwtUtil.generateToken(userDetails);
+        final String jwt = jwtUtility.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }

@@ -1,5 +1,10 @@
 package com.Novi.TechItEasy.utilities;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -7,12 +12,12 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 @Service
-public class JwtUtil {
+public class JwtUtility {
 
-    // De secret key moet minimaal 256 bits lang zijn, of grofweg 45 characters
-    private final static String SECRET_KEY = /* TODO vul hier je super geheime sleutel in*/;
+    private final static String SECRET_KEY = "JammerDatWeBijnaAanHetEindVanDezeSuperToffeBootcampZijnBeland!";
 
     private Key getSigningKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
@@ -33,7 +38,7 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody(); //TODO: fix deprecated methods.
     }
 
     private Boolean isTokenExpired(String token) {
@@ -50,8 +55,8 @@ public class JwtUtil {
                 .setClaims(claims)
                 .setSubject(subject)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) //TODO: de JWT vervalt nu na 24 uur. Zorg dat de JWT 10 dagen geldig is.
-                .signWith(getSigningKey() ,SignatureAlgorithm.HS256)
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 10))
+                .signWith(getSigningKey() , SignatureAlgorithm.HS256)
                 .compact();
     }
 

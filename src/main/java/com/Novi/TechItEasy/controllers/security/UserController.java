@@ -1,17 +1,25 @@
 package com.Novi.TechItEasy.controllers.security;
 
+import com.Novi.TechItEasy.dtos.security.UserDto;
+import com.Novi.TechItEasy.exceptions.BadRequestException;
+import com.Novi.TechItEasy.services.security.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
 
-    /*TODO inject userService*/
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = "")
     public ResponseEntity<List<UserDto>> getUsers() {

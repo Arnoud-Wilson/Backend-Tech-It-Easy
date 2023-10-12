@@ -4,5 +4,12 @@ VALUES
     (true, 42, true, 5, 400, 100, true, 2, false, true, 'test', 'testtwee', 'good', 'led', 'led');
 
 
-INSERT INTO users (username, password, enabled, apikey, email) VALUES ('henk', /*TODO encrypted password (https://bcrypt-generator.com))*/, true, '7847493', "test@testy.tst");
-INSERT INTO authorities (username, authority) VALUES ('henk', 'ROLE_ADMIN');
+INSERT INTO users(username, password, enabled, apikey, email)
+VALUES
+    ('henk', '$2a$12$iiUqrEUaijdCKPL5E6KDS.CMtWtijnILgVUTHsCwROjlReyYrFf3W', true, '7847493', 'test@testy.tst');
+
+-- //password van henk = Geheim // --
+
+INSERT INTO authorities(username, authority)
+VALUES
+    ('henk', 'ROLE_ADMIN');
