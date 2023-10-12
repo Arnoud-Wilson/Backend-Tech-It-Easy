@@ -11,6 +11,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -49,17 +50,17 @@ public class SpringSecurityConfiguration {
     protected SecurityFilterChain filter (HttpSecurity http) throws Exception {
 
         http
-                .csrf(csrf -> csrf.disable())
-                .httpBasic(basic -> basic.disable())
+                .csrf(AbstractHttpConfigurer::disable)
+                .httpBasic(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth ->
                                 auth
                                         // Wanneer je deze uncomments, staat je hele security open. Je hebt dan alleen nog een jwt nodig.
 //                .requestMatchers("/**").permitAll()
-                                        .requestMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
-                                        .requestMatchers(HttpMethod.GET,"/users").hasRole("ADMIN")
-                                        .requestMatchers(HttpMethod.POST,"/users/**").hasRole("ADMIN")
-                                        .requestMatchers(HttpMethod.DELETE, "/users/**").hasRole("ADMIN")
+                                        .requestMatchers(HttpMethod.POST, "/users").hasAuthority("ADMIN")
+                                        .requestMatchers(HttpMethod.GET,"/users").hasAuthority("ADMIN")
+                                        .requestMatchers(HttpMethod.POST,"/users/**").hasAuthority("ADMIN")
+                                        .requestMatchers(HttpMethod.DELETE, "/users/**").hasAuthority("ADMIN")
                                         /*TODO voeg de antmatchers toe voor admin(post en delete) en user (overige)*/
                                         .requestMatchers("/authenticated").authenticated()
                                         .requestMatchers("/authenticate").permitAll()

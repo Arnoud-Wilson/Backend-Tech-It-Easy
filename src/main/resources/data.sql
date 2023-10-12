@@ -6,10 +6,10 @@ VALUES
 
 INSERT INTO users(username, password, enabled, apikey, email)
 VALUES
-    ('henk', '$2a$12$iiUqrEUaijdCKPL5E6KDS.CMtWtijnILgVUTHsCwROjlReyYrFf3W', true, '7847493', 'test@testy.tst');
+    ('henk', 'Geheim', true, '7847493', 'test@testy.tst');
 
 -- //password van henk = Geheim // --
 
 INSERT INTO authorities(username, authority)
 VALUES
-    ('henk', 'ROLE_ADMIN');
+    ('henk', 'ADMIN');
