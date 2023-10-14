@@ -5,7 +5,7 @@ import com.Novi.TechItEasy.exceptions.UsernameNotFoundException;
 import com.Novi.TechItEasy.models.security.Authority;
 import com.Novi.TechItEasy.models.security.User;
 import com.Novi.TechItEasy.repositories.UserRepository;
-import com.Novi.TechItEasy.utilities.RandomStringGenerator;
+import com.Novi.TechItEasy.utilities.RandomStringGenerator;;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +19,12 @@ import java.util.Set;
 public class UserService {
 
     private final UserRepository userRepository;
-    //TODO: opdracht 15 encoder?? evt in dto??
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, PasswordEncoder encrypt) {
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<UserDto> getUsers() {
@@ -50,6 +52,7 @@ public class UserService {
     }
 
     public String createUser(UserDto userDto) {
+        //TODO: can create two identical users...
         String randomString = RandomStringGenerator.generateAlphaNumeric(20);
         userDto.setApikey(randomString);
         User newUser = userRepository.save(toUser(userDto));
@@ -109,7 +112,7 @@ public class UserService {
         var user = new User();
 
         user.setUsername(userDto.getUsername());
-        user.setPassword(userDto.getPassword()); //TODO:encrypt! in dto encrypted binnen laten komen..?
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setEnabled(userDto.getEnabled());
         user.setApikey(userDto.getApikey());
         user.setEmail(userDto.getEmail());

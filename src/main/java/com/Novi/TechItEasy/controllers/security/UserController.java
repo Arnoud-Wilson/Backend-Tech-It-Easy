@@ -40,11 +40,10 @@ public class UserController {
     }
 
     @PostMapping(value = "")
-    //TODO: make klant/customer
-    public ResponseEntity<UserDto> createKlant(@RequestBody UserDto dto) {;
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto dto) {;
 
         String newUsername = userService.createUser(dto);
-        userService.addAuthority(newUsername, "ROLE_USER");
+        userService.addAuthority(newUsername, "USER");
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{username}")
                 .buildAndExpand(newUsername).toUri();
@@ -53,7 +52,7 @@ public class UserController {
     }
 
     @PutMapping(value = "/{username}")
-    public ResponseEntity<UserDto> updateKlant(@PathVariable("username") String username, @RequestBody UserDto dto) {
+    public ResponseEntity<UserDto> updateUser(@PathVariable("username") String username, @RequestBody UserDto dto) {
 
         userService.updateUser(username, dto);
 
@@ -61,7 +60,7 @@ public class UserController {
     }
 
     @DeleteMapping(value = "/{username}")
-    public ResponseEntity<Object> deleteKlant(@PathVariable("username") String username) {
+    public ResponseEntity<Object> deleteUser(@PathVariable("username") String username) {
         userService.deleteUser(username);
         return ResponseEntity.noContent().build();
     }
@@ -72,7 +71,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/{username}/authorities")
-    //TODO:make requuest body dto?
+    //TODO:make request body dto?
     public ResponseEntity<Object> addUserAuthority(@PathVariable("username") String username, @RequestBody Map<String, Object> fields) {
         try {
             String authorityName = (String) fields.get("authority");

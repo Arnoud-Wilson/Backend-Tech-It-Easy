@@ -1,8 +1,8 @@
 package com.Novi.TechItEasy.dtos.security;
 
+import com.Novi.TechItEasy.configurations.CustomPasswordEncoder;
 import com.Novi.TechItEasy.models.security.Authority;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Set;
 
@@ -16,6 +16,9 @@ public class UserDto {
     public String email;
     @JsonSerialize
     public Set<Authority> authorities;
+
+    public UserDto() {
+    }
 
     public String getUsername() {
         return username;
