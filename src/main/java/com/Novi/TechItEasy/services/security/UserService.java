@@ -6,6 +6,7 @@ import com.Novi.TechItEasy.models.security.Authority;
 import com.Novi.TechItEasy.models.security.User;
 import com.Novi.TechItEasy.repositories.UserRepository;
 import com.Novi.TechItEasy.utilities.RandomStringGenerator;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -18,8 +19,9 @@ import java.util.Set;
 public class UserService {
 
     private final UserRepository userRepository;
+    //TODO: opdracht 15 encoder?? evt in dto??
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder encrypt) {
         this.userRepository = userRepository;
     }
 

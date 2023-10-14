@@ -40,6 +40,7 @@ public class UserController {
     }
 
     @PostMapping(value = "")
+    //TODO: make klant/customer
     public ResponseEntity<UserDto> createKlant(@RequestBody UserDto dto) {;
 
         String newUsername = userService.createUser(dto);
@@ -71,6 +72,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/{username}/authorities")
+    //TODO:make requuest body dto?
     public ResponseEntity<Object> addUserAuthority(@PathVariable("username") String username, @RequestBody Map<String, Object> fields) {
         try {
             String authorityName = (String) fields.get("authority");

@@ -22,26 +22,21 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SpringSecurityConfiguration {
 
-    private final CustomUserDetailsService customUserDetailsService;
+    private final CustomUserDetailsService userDetailsService;
     private final JwtRequestFilter jwtRequestFilter;
 
-    public SpringSecurityConfiguration(CustomUserDetailsService customUserDetailsService, JwtRequestFilter jwtRequestFilter) {
-        this.customUserDetailsService = customUserDetailsService;
+    public SpringSecurityConfiguration(CustomUserDetailsService userDetailsService, JwtRequestFilter jwtRequestFilter) {
+        this.userDetailsService = userDetailsService;
         this.jwtRequestFilter = jwtRequestFilter;
     }
 
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
+    //TODO: made http inport userdetail
+    public AuthenticationManager authenticationManager(CustomUserDetailsService userDetailsService, PasswordEncoder passwordEncoder) throws Exception {
         var auth = new DaoAuthenticationProvider();
         auth.setPasswordEncoder(passwordEncoder);
-        auth.setUserDetailsService(customUserDetailsService);
+        auth.setUserDetailsService(userDetailsService);
         return new ProviderManager(auth);
     }
 
@@ -57,11 +52,12 @@ public class SpringSecurityConfiguration {
                                 auth
 //                                         Wanneer je deze uncomments, staat je hele security open. Je hebt dan alleen nog een jwt nodig.
 //                .requestMatchers("/**").permitAll()
+                                        //TODO: made hasdRole hasAuthority.
                                         .requestMatchers(HttpMethod.POST, "/users").hasAuthority("ADMIN")
                                         .requestMatchers(HttpMethod.GET,"/users").hasAuthority("ADMIN")
                                         .requestMatchers(HttpMethod.POST,"/users/**").hasAuthority("ADMIN")
                                         .requestMatchers(HttpMethod.DELETE, "/users/**").hasAuthority("ADMIN")
-                                        /*TODO voeg de antmatchers toe voor admin(post en delete) en user (overige)*/
+                                        /*TODO voeg de requestMatchers toe voor admin(post en delete) en user (overige)*/
                                         .requestMatchers("/authenticated").authenticated()
                                         .requestMatchers("/authenticate").permitAll()
                                         .anyRequest().denyAll()
