@@ -8,7 +8,7 @@ INSERT INTO users(username, password, enabled, apikey, email)
 VALUES
     ('henk', '$2a$12$quFO0Y69QFyUprNxzu5aY.IrwKelctwLSWvUTmpg.eO08u.6PIBJy', true, '7847493', 'test@testy.tst');
 
--- //password van henk = Geheim / $2a$12$quFO0Y69QFyUprNxzu5aY.IrwKelctwLSWvUTmpg.eO08u.6PIBJy // --
+-- //password van henk = Geheim// --
 
 INSERT INTO authorities(username, authority)
 VALUES

@@ -55,7 +55,7 @@ public class SpringSecurityConfiguration {
                                         //TODO: made hasdRole hasAuthority.
                                         .requestMatchers(HttpMethod.POST, "/users").hasAuthority("ADMIN")
                                         .requestMatchers(HttpMethod.GET,"/users/**").hasAuthority("ADMIN")
-                                        .requestMatchers(HttpMethod.POST,"/users/**").hasAuthority("ADMIN")
+                                        .requestMatchers(HttpMethod.PUT,"/users/**").hasAuthority("ADMIN")
                                         .requestMatchers(HttpMethod.DELETE, "/users/**").hasAuthority("ADMIN")
                                         /*TODO voeg de requestMatchers toe voor admin(post en delete) en user (overige)*/
                                         .requestMatchers("/authenticated").authenticated()
