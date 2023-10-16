@@ -31,17 +31,15 @@ public class AuthenticationController {
         this.jwtUtility = jwtUtility;
     }
 
-    /*
-         Deze methode geeft de principal (basis user gegevens) terug van de ingelogde gebruiker
-     */
+
+    ///// Gives principal for the logged in user/jwt token. /////
     @GetMapping(value = "/authenticated")
     public ResponseEntity<Object> authenticated(Authentication authentication, Principal principal) {
         return ResponseEntity.ok().body(principal);
     }
 
-    /*
-    Deze methode geeft het JWT token terug wanneer de gebruiker de juiste inloggegevens op geeft.
-     */
+
+    ///// Gives JWT token to correct user and password. /////
     @PostMapping(value = "/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 

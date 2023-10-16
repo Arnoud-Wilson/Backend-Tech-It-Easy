@@ -1,6 +1,5 @@
 package com.Novi.TechItEasy.dtos.security;
 
-import com.Novi.TechItEasy.configurations.CustomPasswordEncoder;
 import com.Novi.TechItEasy.models.security.Authority;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

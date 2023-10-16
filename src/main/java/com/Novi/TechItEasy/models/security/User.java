@@ -9,8 +9,6 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
 
-
-    // Deze eerste 3 variabelen zijn verplicht om te kunnen inloggen met een username, password en rol.
     @Id
     @Column(unique = true)
     private String username;
@@ -27,8 +25,6 @@ public class User {
     private Set<Authority> authorities = new HashSet<>();
 
 
-    // Deze 3 variabelen zijn niet verplicht.
-    // Je mag ook een "String banaan;" toevoegen, als je dat graag wilt.
     @Column(nullable = false)
     private boolean enabled = true;
 
