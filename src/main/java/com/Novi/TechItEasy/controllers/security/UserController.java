@@ -4,6 +4,7 @@ import com.Novi.TechItEasy.dtos.security.UserDto;
 import com.Novi.TechItEasy.exceptions.BadRequestException;
 import com.Novi.TechItEasy.services.security.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -32,11 +33,13 @@ public class UserController {
     @GetMapping(value = "/{username}")
     public ResponseEntity<UserDto> getUser(@PathVariable("username") String username) {
 
-        UserDto optionalUser = userService.getUser(username);
+        if (username.equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
+            UserDto optionalUser = userService.getUser(username);
 
-
-        return ResponseEntity.ok().body(optionalUser);
-
+            return ResponseEntity.ok().body(optionalUser);
+        } else {
+            throw new BadRequestException("Alleen eigen gegevens zijn in te zien");
+        }
     }
 
     @PostMapping(value = "")
@@ -71,7 +74,6 @@ public class UserController {
     }
 
     @PostMapping(value = "/{username}/authorities")
-    //TODO:make request body dto?
     public ResponseEntity<Object> addUserAuthority(@PathVariable("username") String username, @RequestBody Map<String, Object> fields) {
         try {
             String authorityName = (String) fields.get("authority");
